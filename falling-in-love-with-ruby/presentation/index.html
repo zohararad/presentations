@@ -1,0 +1,304 @@
+
+<html>
+  <head>
+    <link href="css/reset.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="shortcut icon" href="css/favicon.png" />
+    <link rel="apple-touch-icon" href="css/apple-touch-icon.png" />
+    <!-- Code Prettifier: -->
+<link href="css/prettify.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="js/prettify.js"></script>
+    <link href="css/style.css" rel="stylesheet" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,800italic,300,400,800' rel='stylesheet' type='text/css'>    
+
+
+  </head>
+
+  <body onload="prettyPrint()">
+  <div class="fallback-message">
+  <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+  <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+  </div>
+    <div id="impress">
+    <div class='step'  data-x="0" data-y="0">
+    
+<h1>Falling in love with Ruby</h1>
+
+<h2>Zohar Arad. September 2012</h2>
+
+<p><img src="http://aux4.iconpedia.net/uploads/863724227.png" class="right"></p>
+</div>
+      <div class='step'  data-x="1500" data-y="-1500">
+    
+<h2>Modern programming languages</h2>
+
+<h3>Star Wars version</h3>
+</div>
+      <div class='step'  data-x="3000" data-y="0">
+    
+<figure>
+  <img src="images/stormtroopers.jpg">
+  <figcaption>
+    <p>.NET Graduation Ceremony</p>
+    <p class="src">source: http://deathstarpr.blogspot.co.il/</p>
+  </figcaption>
+</figure>
+</div>
+      <div class='step'  data-x="3000" data-y="0">
+    
+<figure>
+  <img src="images/c3po.jpg">
+  <figcaption>
+    <p>PHP Hackathon</p>
+    <p class="src">source: http://www.starwars.com</p>
+  </figcaption>
+</figure>
+</div>
+      <div class='step'  data-x="3000" data-y="0">
+    
+<figure>
+  <img src="images/yoda-dooku.jpg">
+  <figcaption>
+    <p>Python developer, kicking a Java developer's ass</p>
+    <p class="src">source: http://starwars.wikia.com</p>
+  </figcaption>
+</figure>
+</div>
+      <div class='step'  data-x="3000" data-y="0">
+    
+<figure>
+  <img src="images/jarjarbinks.jpg">
+  <figcaption>
+    <p>Perl Developers Meetup</p>
+    <p class="src">source: http://starwars.wikia.com</p>
+  </figcaption>
+</figure>
+</div>
+      <div class='step'  data-x="3000" data-y="0">
+    
+<figure>
+  <img src="images/ewoks.jpg">
+  <figcaption>
+    <p>Javascript Developers Debugging IE8</p>
+    <p class="src">source: http://www.starwars.com/</p>
+  </figcaption>
+</figure>
+</div>
+      <div class='step'  data-x="3000" data-y="0">
+    
+<figure>
+  <img src="images/jedi-class.jpg">
+  <figcaption>
+    <p>Ruby Master Class</p>
+    <p class="src">source: http://www.starwars.com/</p>
+  </figcaption>
+</figure>
+</div>
+      <div class='step'  data-x="1500" data-y="0">
+    
+<h2>Developer Happiness</h2>
+
+<h3>Coding should be fun</h3>
+</div>
+      <div class='step'  data-x="3000" data-y="0">
+    
+<p><strong>Ruby code is</strong> readable, consistent, concise</p>
+</div>
+      <div class='step'  data-x="4500" data-y="0">
+    
+<h2>Ruby</h2>
+<pre><code class='prettyprint ruby'>name = "Natalie Portman"
+puts "Luke's mom rocks!" unless name.blank?
+</code></pre>
+<h2>PHP</h2>
+<pre><code class='prettyprint php'>$name = "Natalie Portman";
+if(strlen($name) > 0){
+  echo "Luke's mom rocks";
+}
+</code></pre></div>
+      <div class='step'  data-x="6000" data-y="0">
+    <pre><code class='prettyprint ruby'>10.times do
+  puts "Hi"
+end
+
+@credit += 1 if @coins > 2
+start_game! unless waiting?
+
+until x < 10 do
+  x += 1
+end
+
+file_content = File.open('somefile.txt','r'){ |f| f.read }
+</code></pre></div>
+      <div class='step'  data-x="0" data-y="-1500" data-rotate-z="60">
+    
+<h2>Mixins and Modules</h2>
+
+<h3>Because multiple-inheritence sucks</h3>
+</div>
+      <div class='step'  data-x="1500" data-y="-1500" data-rotate-z="0">
+    
+<p><strong>Mixins</strong> are a cleaner way to reuse code</p>
+</div>
+      <div class='step'  data-x="3000" data-y="-1500" data-rotate-z="0">
+    
+<p>Functionality is <strong>self-contained</strong> in modules and <strong>mixed</strong> into objects</p>
+</div>
+      <div class='step'  data-x="4500" data-y="-1500" data-rotate-z="0">
+    
+<p>Code is <strong>cleaner</strong> and more <strong>organized</strong>.</p>
+
+<p>No inheritence chain to worry about</p>
+</div>
+      <div class='step'  data-x="6000" data-y="-1500" data-rotate-z="0">
+    <pre><code class='prettyprint ruby'>module Logger
+  def log(msg)
+    puts msg
+  end
+end
+
+class Car
+  include Logger
+  def drive
+    log "Driving"
+  end
+end
+</code></pre></div>
+      <div class='step'  data-x="0" data-y="-3000" data-rotate-z="60">
+    
+<h2>Rubygems</h2>
+
+<h3>Ruby code collaboration eco-system</h3>
+</div>
+      <div class='step'  data-x="1500" data-y="-3000" data-rotate-z="0">
+    
+<p>Rubygems is the <strong>driving force</strong> of the Ruby</p>
+
+<p>eco-system success</p>
+</div>
+      <div class='step'  data-x="3000" data-y="-3000" data-rotate-z="0">
+    
+<p>No more <strong>missing</strong> packages, <strong>conflicting</strong> versions and <strong>broken</strong> dependencies</p>
+</div>
+      <div class='step'  data-x="4500" data-y="-3000" data-rotate-z="0">
+    
+<p>Clear standards and tools for <strong>authoring</strong> and <strong>distribution</strong></p>
+
+<p><br/></p>
+
+<p><strong>Versioning</strong>, <strong>dependencies</strong> and <strong>load paths</strong> are handled during install</p>
+</div>
+      <div class='step'  data-x="6000" data-y="-3000" data-rotate-z="0">
+    
+<p>Bundle management with Bundler makes development and deployment a breeze</p>
+</div>
+      <div class='step'  data-x="0" data-y="0" data-rotate-z="60">
+    
+<h2>Testing as a culture</h2>
+
+<h3>Reliability on the bleeding edge</h3>
+</div>
+      <div class='step'  data-x="1500" data-y="0" data-rotate-z="0">
+    
+<h2>Excellent testing frameworks</h2>
+
+<ul>
+<li>RSpec</li>
+<li>Test::Unit</li>
+<li>Cucumber</li>
+<li>Capybara</li>
+</ul>
+</div>
+      <div class='step'  data-x="3000" data-y="0" data-rotate-z="0">
+    
+<p>Public code is <strong>always</strong> tested - Early adpotion is usually safe</p>
+
+<p><br></p>
+
+<p><strong>Collaboration</strong> is easier - Responsibilities are clear</p>
+</div>
+      <div class='step'  data-x="4500" data-y="0" data-rotate-z="0">
+    <pre><code class='prettyprint ruby'>describe MyController do
+  before :each do
+    get '/some_url'
+  end
+
+  it "should have a response body" do
+    last_response.body.should_not be_blank
+  end
+end
+</code></pre></div>
+      <div class='step'  data-x="0" data-y="-1500" data-rotate-z="60">
+    
+<h2>Faster development cycles</h2>
+
+<h3>It&#39;s all about developer performance</h3>
+</div>
+      <div class='step'  data-x="1500" data-y="-1500" data-rotate-z="0">
+    
+<p>Convention over configuration</p>
+
+<p>(so long Java XML files)</p>
+</div>
+      <div class='step'  data-x="3000" data-y="-1500" data-rotate-z="0">
+    
+<p>Focus on programming rather than making trivial decisions</p>
+</div>
+      <div class='step'  data-x="4500" data-y="-1500" data-rotate-z="0">
+    
+<p>The <strong>right tools</strong> for the job (and they&#39;re tested)</p>
+
+<p><br></p>
+
+<p>Variaty is good. Not too much variaty is better!</p>
+</div>
+      <div class='step'  data-x="6000" data-y="-1500" data-rotate-z="0">
+    
+<p>Community standards like <strong>Rack</strong> and <strong>ActiveModel</strong> for platform-agnostic solutions</p>
+</div>
+      <div class='step'  data-x="0" data-y="-3000" data-rotate-z="60">
+    
+<h2>Ruby made me a better programmer</h2>
+</div>
+      <div class='step'  data-x="1500" data-y="-3000" data-rotate-z="0">
+    
+<p>Coding style and conventions are clear and easy to pick up</p>
+</div>
+      <div class='step'  data-x="3000" data-y="-3000" data-rotate-z="0">
+    
+<p>Community tools and standards help me focus on the problem rather than menial tasks</p>
+
+<p><br/></p>
+
+<p>For example - <strong>Rake</strong>, <strong>RVM</strong>, <strong>Bundler</strong></p>
+</div>
+      <div class='step'  data-x="4500" data-y="-3000" data-rotate-z="0">
+    
+<p>Ruby doesn&#39;t get upset when I don&#39;t implement an interface or declare types (Java, .NET)</p>
+</div>
+      <div class='step'  data-x="4500" data-y="-3000" data-rotate-z="0">
+    
+<p>Ruby doesn&#39;t get upset when I don&#39;t want to get my hands dirty (Python)</p>
+</div>
+      <div class='step'  data-x="4500" data-y="-3000" data-rotate-z="0">
+    
+<p>Ruby doesn&#39;t get upset when I forget to configure php.ini just right (PHP)</p>
+</div>
+      <div class='step'  data-x="6000" data-y="-3000" data-rotate-z="0">
+    
+<p>Ruby doesn&#39;t get in the way of my code so I can do things <strong>faster</strong>, more <strong>reliably</strong> and with <strong>less headaches</strong></p>
+</div>
+      <div class='step'  data-x="0" data-y="-3000" data-rotate-y="120">
+    
+<h1>Thank You!</h1>
+
+<h2>Questions?</h2>
+
+      </div>
+    <script src="js/impress.js"></script>
+    <script>impress().init();</script>
+  </body>
+</html>
+    
