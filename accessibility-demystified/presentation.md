@@ -12,19 +12,29 @@ can only be accessed in **Internet Explorer**
 ---
 = data-x="1500" data-y="-1500"
 
-Think about it.
+**Think about it**
 
-The official online service of the Social Security Bureau cannot be accssed by some disabled people!
+Some disabled people *cannot* access the Social Security Services online!
 
 ---
 = data-x="3000" data-y="-1500"
 
 More than 80% of accessibility requirements for a Website **doesn't** require extra work.
 
-It's like having a builder charge extra for building a solid house.
-
 ---
 = data-x="4500" data-y="-1500"
+
+It's like having a builder charge extra for building a solid house.
+
+<figure>
+  <img src="http://www.pudgybunny.com/images/bobbuilderbig.gif" />
+  <figcaption>
+    Source: www.pudgybunny.com
+  </figcaption>
+</figure>
+
+---
+= data-x="6000" data-y="-1500"
 
 ## What makes a Website accessible?
 
@@ -205,8 +215,6 @@ Write semantic markup
 
 # Start caring
 ## Stop paying for it!
-
----
 
 ---
 = data-x="3000" data-y="1500"
