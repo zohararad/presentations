@@ -207,6 +207,14 @@ Write semantic markup
 ## Stop paying for it!
 
 ---
-= data-x="1500" data-y="1500"
+
+---
+= data-x="3000" data-y="1500"
+
+## Color Blindness Demo
+### http://clearideaz.com/
+
+---
+= data-x="4500" data-y="1500"
 
 # Thank You
