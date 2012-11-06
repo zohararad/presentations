@@ -126,7 +126,8 @@ end
 @credit += 1 if @coins > 2
 start_game! unless waiting?
 
-until x < 10 do
+x = 0
+until x > 10 do
   x += 1
 end
 
@@ -194,6 +195,29 @@ end
     
 <p>Bundle management with Bundler makes development and deployment a breeze</p>
 </div>
+      <div class='step'  data-x="7500" data-y="-3000" data-rotate-z="0">
+    <pre><code class='prettyprint ruby'>source 'https://rubygems.org'
+
+gem 'mongoid', '~>3.0'
+gem 'rspec', :group => :test
+</code></pre></div>
+      <div class='step'  data-x="7500" data-y="-3000" data-rotate-z="0">
+    <pre><code class='prettyprint xml'>&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+&lt;groupId&gt;org.sonatype.mavenbook.simple&lt;/groupId&gt;
+&lt;artifactId&gt;simple&lt;/artifactId&gt;
+&lt;packaging&gt;jar&lt;/packaging&gt;
+&lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+&lt;name&gt;simple&lt;/name&gt;
+&lt;url&gt;http://maven.apache.org&lt;/url&gt;
+&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;junit&lt;/groupId&gt;
+        &lt;artifactId&gt;junit&lt;/artifactId&gt;
+        &lt;version&gt;3.8.1&lt;/version&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre></div>
       <div class='step'  data-x="0" data-y="0" data-rotate-z="60">
     
 <h2>Testing as a culture</h2>
@@ -254,10 +278,6 @@ end
 
 <p>Variaty is good. Not too much variaty is better!</p>
 </div>
-      <div class='step'  data-x="6000" data-y="-1500" data-rotate-z="0">
-    
-<p>Community standards like <strong>Rack</strong> and <strong>ActiveModel</strong> for platform-agnostic solutions</p>
-</div>
       <div class='step'  data-x="0" data-y="-3000" data-rotate-z="60">
     
 <h2>Ruby made me a better programmer</h2>
@@ -277,14 +297,35 @@ end
       <div class='step'  data-x="4500" data-y="-3000" data-rotate-z="0">
     
 <p>Ruby doesn&#39;t get upset when I don&#39;t implement an interface or declare types (Java, .NET)</p>
+
+<figure class="noframe">
+  <img width="250" src="http://www.freshrant.com/wp-content/uploads/2010/06/grumpy-dwarf.jpg" />
+  <figcaption>
+    <p class="src">From http://www.freshrant.com</p>
+  </figcaption>
+</figure>
 </div>
       <div class='step'  data-x="4500" data-y="-3000" data-rotate-z="0">
     
 <p>Ruby doesn&#39;t get upset when I don&#39;t want to get my hands dirty (Python)</p>
+
+<figure class="noframe">
+  <img height="250" src="http://www.redwindsoftware.com/blog/image.axd?picture=/dug.png" />
+  <figcaption>
+    <p class="src">From http://www.redwindsoftware.com</p>
+  </figcaption>
+</figure>
 </div>
       <div class='step'  data-x="4500" data-y="-3000" data-rotate-z="0">
     
 <p>Ruby doesn&#39;t get upset when I forget to configure php.ini just right (PHP)</p>
+
+<figure class="noframe">
+  <img height="250" src="http://1.bp.blogspot.com/-wciNCtuDOps/TuGfSccI9VI/AAAAAAABtqk/A0Drj8QEhh0/s1600/Brainy+Smurf.jpg" />
+  <figcaption>
+    <p class="src">From http://kooztop5.blogspot.co.il/</p>
+  </figcaption>
+</figure>
 </div>
       <div class='step'  data-x="6000" data-y="-3000" data-rotate-z="0">
     

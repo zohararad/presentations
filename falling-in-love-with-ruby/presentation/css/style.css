@@ -228,6 +228,24 @@ pre, code {
 figure{
 	position: relative;
 	width:100%;
+	text-align: center;
+	margin-top:45px;
+	border:10px solid #111;
+	box-shadow: 2px 2px 5px rgba(30,30,30,0.5);
+}
+
+
+figure.noframe{
+	border:none;
+	box-shadow: none;
+}
+
+figure img{
+	display: block;
+}
+
+figure.noframe img{
+	display: inline-block;
 }
 
 figcaption{
@@ -241,6 +259,13 @@ figcaption{
 	text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
 }
 
+.noframe figcaption{
+	background: transparent;
+	color: #000;
+	text-shadow:none;
+	bottom:-50px;
+}
+
 figcaption .src{
 	font-size: 0.6em;
 }
@@ -248,3 +273,4 @@ figcaption .src{
 figcaption p {
 	margin: 0;
 }
+
