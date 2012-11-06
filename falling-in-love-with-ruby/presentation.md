@@ -2,7 +2,7 @@
 
 # Falling in love with Ruby
 ## Zohar Arad. September 2012
-<img src="http://aux4.iconpedia.net/uploads/863724227.png" class="right">
+<img src="images/ruby.png" class="right">
 
 ---
 = data-x="1500" data-y="-1500"
@@ -307,9 +307,9 @@ For example - **Rake**, **RVM**, **Bundler**
 Ruby doesn't get upset when I don't implement an interface or declare types (Java, .NET)
 
 <figure class="noframe">
-  <img width="250" src="http://www.freshrant.com/wp-content/uploads/2010/06/grumpy-dwarf.jpg" />
+  <img width="250" src="images/grumpy-dwarf.jpg" />
   <figcaption>
-    <p class="src">From http://www.freshrant.com</p>
+    <p class="src">Source: http://www.freshrant.com</p>
   </figcaption>
 </figure>
 
@@ -319,9 +319,9 @@ Ruby doesn't get upset when I don't implement an interface or declare types (Jav
 Ruby doesn't get upset when I don't want to get my hands dirty (Python)
 
 <figure class="noframe">
-  <img height="250" src="http://www.redwindsoftware.com/blog/image.axd?picture=/dug.png" />
+  <img height="250" src="images/grumpy_mechanic.png" />
   <figcaption>
-    <p class="src">From http://www.redwindsoftware.com</p>
+    <p class="src">Source: http://www.redwindsoftware.com</p>
   </figcaption>
 </figure>
 
@@ -331,9 +331,9 @@ Ruby doesn't get upset when I don't want to get my hands dirty (Python)
 Ruby doesn't get upset when I forget to configure php.ini just right (PHP)
 
 <figure class="noframe">
-  <img height="250" src="http://1.bp.blogspot.com/-wciNCtuDOps/TuGfSccI9VI/AAAAAAABtqk/A0Drj8QEhh0/s1600/Brainy+Smurf.jpg" />
+  <img height="250" src="images/brainy_smurf.jpg" />
   <figcaption>
-    <p class="src">From http://kooztop5.blogspot.co.il/</p>
+    <p class="src">Source: http://kooztop5.blogspot.co.il/</p>
   </figcaption>
 </figure>
 
