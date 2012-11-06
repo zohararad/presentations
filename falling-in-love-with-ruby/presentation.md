@@ -107,7 +107,8 @@ end
 @credit += 1 if @coins > 2
 start_game! unless waiting?
 
-until x < 10 do
+x = 0
+until x > 10 do
   x += 1
 end
 
@@ -187,6 +188,37 @@ Clear standards and tools for **authoring** and **distribution**
 Bundle management with Bundler makes development and deployment a breeze
 
 ---
+= data-x="7500" data-y="-3000" data-rotate-z="0"
+
+```ruby
+source 'https://rubygems.org'
+
+gem 'mongoid', '~>3.0'
+gem 'rspec', :group => :test
+```
+
+---
+= data-x="7500" data-y="-3000" data-rotate-z="0"
+
+```xml
+&lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+&lt;groupId&gt;org.sonatype.mavenbook.simple&lt;/groupId&gt;
+&lt;artifactId&gt;simple&lt;/artifactId&gt;
+&lt;packaging&gt;jar&lt;/packaging&gt;
+&lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+&lt;name&gt;simple&lt;/name&gt;
+&lt;url&gt;http://maven.apache.org&lt;/url&gt;
+&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;junit&lt;/groupId&gt;
+        &lt;artifactId&gt;junit&lt;/artifactId&gt;
+        &lt;version&gt;3.8.1&lt;/version&gt;
+        &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+```
+
+---
 = data-x="0" data-y="0" data-rotate-z="60"
 ## Testing as a culture
 ### Reliability on the bleeding edge
@@ -252,11 +284,6 @@ The **right tools** for the job (and they're tested)
 Variaty is good. Not too much variaty is better!
 
 ---
-= data-x="6000" data-y="-1500" data-rotate-z="0"
-
-Community standards like **Rack** and **ActiveModel** for platform-agnostic solutions
-
----
 = data-x="0" data-y="-3000" data-rotate-z="60"
 ## Ruby made me a better programmer
 
@@ -279,15 +306,36 @@ For example - **Rake**, **RVM**, **Bundler**
 
 Ruby doesn't get upset when I don't implement an interface or declare types (Java, .NET)
 
+<figure class="noframe">
+  <img width="250" src="http://www.freshrant.com/wp-content/uploads/2010/06/grumpy-dwarf.jpg" />
+  <figcaption>
+    <p class="src">From http://www.freshrant.com</p>
+  </figcaption>
+</figure>
+
 ---
 = data-x="4500" data-y="-3000" data-rotate-z="0"
 
 Ruby doesn't get upset when I don't want to get my hands dirty (Python)
 
+<figure class="noframe">
+  <img height="250" src="http://www.redwindsoftware.com/blog/image.axd?picture=/dug.png" />
+  <figcaption>
+    <p class="src">From http://www.redwindsoftware.com</p>
+  </figcaption>
+</figure>
+
 ---
 = data-x="4500" data-y="-3000" data-rotate-z="0"
 
 Ruby doesn't get upset when I forget to configure php.ini just right (PHP)
+
+<figure class="noframe">
+  <img height="250" src="http://1.bp.blogspot.com/-wciNCtuDOps/TuGfSccI9VI/AAAAAAABtqk/A0Drj8QEhh0/s1600/Brainy+Smurf.jpg" />
+  <figcaption>
+    <p class="src">From http://kooztop5.blogspot.co.il/</p>
+  </figcaption>
+</figure>
 
 ---
 = data-x="6000" data-y="-3000" data-rotate-z="0"
