@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/reset.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="shortcut icon" href="css/favicon.png" />
+    <link rel="apple-touch-icon" href="css/apple-touch-icon.png" />
+    <!-- Code Prettifier: -->
+<link href="css/highlight.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+    <link href="css/style.css" rel="stylesheet" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,800italic,300,400,800' rel='stylesheet' type='text/css'>    
+
+
+  </head>
+
+  <body>
+  <div class="fallback-message">
+  <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+  <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+  </div>
+    <div id="impress">
+    <div class='step'  data-x="0" data-y="0">
+    
+<h2>Real-Time Analytics</h2>
+
+<h2>with <strong>HBase</strong> &amp; <strong>Kiji</strong></h2>
+
+<p>Case Study of <strong>Quicklizard.com</strong></p>
+</div>
+      <div class='step'  data-x="1500" data-y="0">
+    
+<h2>Quicklizard</h2>
+
+<p>eCommerce Business-Intelligence Platform</p>
+</div>
+      <div class='step'  data-x="1500" data-y="0">
+    
+<p>We help eCommerce store owners make the <strong>right decisions</strong></p>
+
+<p>and <strong>react</strong> to changes in their store &amp; market-place</p>
+
+<p>based on <strong>real-time</strong> and historical information</p>
+</div>
+      <div class='step'  data-x="3000" data-y="0">
+    
+<p>Measure anything that happens in an eCommerce store
+<br /><br />
+Provide real-time and historical BI on events and trends</p>
+
+<p>in the context of the client&#39;s store and market-place</p>
+</div>
+      <div class='step'  data-x="3000" data-y="0">
+    
+<p>Answer questions like:</p>
+
+<ul>
+<li>How many times was a product viewed or purchased?</li>
+<li>Were viewes and purchases part of a campaign?</li>
+<li>How well is a landing page performing?</li>
+<li>How should you order a list of products to maximize revenue?</li>
+<li>What is the optimal price for a product in comparison to competition?</li>
+</ul>
+</div>
+      <div class='step'  data-x="4500" data-y="0">
+    
+<p>To do that, we process 100s of thousands of events per-day</p>
+
+<p>both in <strong>real-time</strong> and in batch using <strong>Storm</strong>, <strong>HBase</strong> &amp; <strong>Hadoop</strong></p>
+</div>
+      <div class='step'  data-x="0" data-y="1500">
+    
+<h2>The Challenge:</h2>
+
+<ul>
+<li>Handle 100s of thousands of daily events</li>
+<li>Generate real-time BI for incoming data</li>
+<li>Analyze historical data and generate useful insights over time</li>
+<li>Use historical trends to make real-time decisions</li>
+</ul>
+</div>
+      <div class='step'  data-x="1500" data-y="1500">
+    
+<h2>Our Solution</h2>
+
+<ul>
+<li><strong>Storm</strong> - Real-time event aggregation and decision making</li>
+<li><strong>HBase</strong> - Real-time &amp; historical aggregated data store</li>
+<li><strong>Kiji</strong> - Data collection &amp; analysis framework for HBase</li>
+<li><strong>Hadoop M/R</strong> - Offline data processing and analysis</li>
+</ul>
+</div>
+      <div class='step'  data-x="3000" data-y="1500">
+    
+<h1>HBase</h1>
+
+<h2>The Hadoop Database</h2>
+</div>
+      <div class='step'  data-x="3000" data-y="1500">
+    
+<h2>We chose HBase because:</h2>
+
+<ul>
+<li>It&#39;s exteremly robust &amp; scalable</li>
+<li>It can handle huge amounts of data</li>
+<li>Perfect for data aggregation (counters, TTL, row scans)</li>
+<li>Supports Map/Reduce (thanks to Hadoop)</li>
+</ul>
+</div>
+      <div class='step'  data-x="3000" data-y="1500">
+    
+<h1>BUT....</h1>
+
+<p>We&#39;re using HBase with a bit of help from</p>
+</div>
+      <div class='step'  data-x="4500" data-y="1500">
+    
+<h1>Kiji</h1>
+
+<p>Real-time data collection, aggregation and analysis for HBase</p>
+</div>
+      <div class='step'  data-x="4500" data-y="1500">
+    
+<h2>Kiji simplifies</h2>
+
+<ul>
+<li>HBase schema management</li>
+<li>Data collection (keys, TTLs, counters, history)</li>
+<li>Data retrieval</li>
+<li>Data aggregation and analysis (M/R)</li>
+</ul>
+</div>
+      <div class='step'  data-x="6000" data-y="1500">
+    
+<p>In other words, Kiji makes it easier to use HBase as a real-time BI platform</p>
+</div>
+      <div class='step'  data-x="0" data-y="3000">
+    
+<h1>The End Result</h1>
+</div>
+      <div class='step'  data-x="1500" data-y="3000">
+    
+<p>Short and long-term data is aggregated</p>
+
+<p>in a scalable, robust data store (HBase)</p>
+</div>
+      <div class='step'  data-x="1500" data-y="3000">
+    
+<p>This data is used for real-time BI and decision-making</p>
+
+<p>Since it&#39;s readily available (no Hadoop M/R).</p>
+</div>
+      <div class='step'  data-x="3000" data-y="3000">
+    
+<p>Historical data (logs) is analysed offline (Hadoop M/R)</p>
+
+<p>And is fed back into real-time data store (HBase).</p>
+</div>
+      <div class='step'  data-x="4500" data-y="3000">
+    
+<p>Historical data can be analyze and queried in near real-time</p>
+
+<p>(coming soon thanks to Kiji...)</p>
+</div>
+      <div class='step'  data-x="6000" data-y="3000">
+    
+<p>We can answer questions like:
+<blockquote>
+&quot;How well is my campaign performing now in comparison to last week?&quot;
+</blockquote></p>
+</div>
+      <div class='step'  data-x="6000" data-y="3000">
+    
+<p>Or let you say things like:
+<blockquote>
+&quot;Email me if the conversion rate of white washing machines falls below 2%&quot;
+</blockquote></p>
+</div>
+      <div class='step'  data-x="7500" data-y="3000">
+    
+<h2>In Real-Time</h2>
+
+<p>and over large amounts of data</p>
+</div>
+      <div class='step'  data-x="0" data-y="0">
+    
+<h1>Thank You</h1>
+
+<h2>Questions?</h2>
+
+      </div>
+    <script src="js/impress.js"></script>
+    <script>impress().init();</script>
+  </body>
+</html>
+    
