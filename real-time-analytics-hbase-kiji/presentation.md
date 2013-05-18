@@ -170,3 +170,12 @@ and over large amounts of data
 
 # Thank You
 ## Questions?
+
+---
+= data-x="1500" data-y="0"
+
+Presentation: http://goo.gl/YAuOv
+
+E: zohar@quicklizard.com
+
+W: www.quicklizard.com
