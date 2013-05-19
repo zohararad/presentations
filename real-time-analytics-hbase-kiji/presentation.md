@@ -7,7 +7,7 @@ Case Study of **Quicklizard.com**
 ---
 = data-x="1500" data-y="0"
 
-## Quicklizard
+## <img style="vertical-align:middle; position:relative;top:-4px" src="images/logo.png" />Quicklizard
 
 eCommerce Business-Intelligence Platform
 
