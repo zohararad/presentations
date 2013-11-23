@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <title>Sails.js</title>
+
+  <meta name="description" content="Getting started with Document Databases">
+  <meta name="author" content="Zohar Arad">
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link rel="stylesheet" href="../reveal-js-2.5.0/css/reveal.min.css">
+  <link rel="stylesheet" href="../reveal-js-2.5.0/css/theme/solarized.css" id="theme">
+
+  <!-- For syntax highlighting -->
+  <link rel="stylesheet" href="../reveal-js-2.5.0/lib/css/zenburn.css">
+
+  <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+  <script>
+    document.write( '<link rel="stylesheet" href="../reveal-js-2.5.0/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+  </script>
+
+  <!--[if lt IE 9]>
+  <script src="../reveal-js-2.5.0/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+
+    <div class="slides">
+      <section>
+        <h1>Sails.js</h1>
+        <p>
+          <small>Zohar Arad. &copy; 2013</small>
+        </p>
+      </section>
+      <section>
+        <h2>Why Sails?</h2>
+        <p>
+          After all, there are so many other frameworks
+        </p>
+      </section>
+      <section>
+        <p>
+          A framework is a set of <strong>tools</strong> and <strong>conventions</strong><br />brought together to solve a problem.
+        </p>
+      </section>
+      <section>
+        <h3>A good framework should</h3>
+        <ul>
+          <li>Reduce the need for boilerplate code</li>
+          <li>Lift the burden of making trivial decisions</li>
+          <li>Encourage clear conventions and style</li>
+          <li>Provide automation for repetitive tasks</li>
+        </ul>
+      </section>
+      <section>
+        <h3>With Sails, you get</h3>
+        <ul>
+          <li>Familiar MVC structure</li>
+          <li>Conventions over Configuration</li>
+          <li>Out-of-the-box REST and WebSockets</li>
+          <li>Modular ORM</li>
+          <li>Express.js underneath</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Let's Dig Deeper</h2>
+        <figure>
+          <img src="http://static2.wikia.nocookie.net/__cb20100330165813/simpsons/images/5/5d/Gravedigger_Billy_photo.png" width="320" height="240" />
+          <figcaption>
+            <p>
+              <small>Source: simpsons.wikia.com/wiki/Gravedigger_Billy</small>
+            </p>
+          </figcaption>
+        </figure>
+      </section>
+      <section>
+        <h3>Waterline</h3>
+        <p>
+          Sails' underlying ORM Framework
+        </p>
+      </section>
+      <section>
+        <h3>Waterline</h3>
+        <ul>
+          <li>One ORM to rule them all! (ActiveModel)</li>
+          <li>Model-level adapters</li>
+          <li>Modular storage adapters</li>
+          <li>Well documented and easy to extend</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Waterline - The Gain</h3>
+        <ul>
+          <li>Business logic abstraction (no adapter dependency)</li>
+          <li>Flexible per-model storage</li>
+          <li>Popular DB support with more on the way</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Controllers</h3>
+        <p>
+          REST and WebSockets auto-magic
+        </p>
+        <figure>
+          <img src="http://static2.wikia.nocookie.net/__cb20111119214115/simpsons/images/thumb/b/b6/Magic_Magazine_-_The_Great_Simpsina.jpg/180px-Magic_Magazine_-_The_Great_Simpsina.jpg" />
+          <figcaption>
+            <p>
+              <small>Source: simpsons.wikia.com/wiki/Gravedigger_Billy</small>
+            </p>
+          </figcaption>
+        </figure>
+      </section>
+      <section>
+        <h3>Controllers</h3>
+        <ul>
+          <li>Sensible defaults</li>
+          <li>Per-controller configuration</li>
+          <li>ACL thanks to policies (works great with Passport)</li>
+          <li>Automatically RESTful all the way down to the model</li>
+          <li>WebSockets works on the same RESTful resources</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Controllers - The Gain</h3>
+        <ul>
+          <li>Reduced boilerplate</li>
+          <li>Immediate REST</li>
+          <li>Real-Time support</li>
+          <li>Tunable security</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Developer Happiness</h3>
+        <p>We're not masochists</p>
+      </section>
+      <section>
+        <h3>Developer Happiness</h3>
+        <ul>
+          <li>Component Generator</li>
+          <li>Interactive Console</li>
+          <li>Asset Management</li>
+          <li>LESS support out of the box</li>
+          <li>Jade, Handlebars and others supported through standard Node modules</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Developer Happiness - The Gain</h3>
+        <ul>
+          <li>Automation</li>
+          <li>Interactive Debugging</li>
+          <li>No asset management hell</li>
+          <li>Familiar tools at your fingertips</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Final Thoughts</h2>
+        <p>Before a quick demo</p>
+      </section>
+      <section>
+        <p>Time is precious! Spend it on what matters most - Your code</p>
+      </section>
+      <section>
+        <p>
+          Having too much choice is not always a good thing!
+        </p>
+        <p>
+          <small>Yes, I'm looking at you, PHP, Python and Node.js</small>
+        </p>
+      </section>
+      <section>
+        <p>
+          Sails.js is flexible enough to support whatever<br/>tool-set you enjoy using, <br /><br />
+          yet, it employs enough conventions, boilerplate and<br />guidelines to keep you focused.
+        </p>
+      </section>
+      <section>
+        <figure>
+          <img src="http://jiniandjia.com/blog/wp-content/uploads/2010/11/Homer-Simpson-cheering.jpg" />
+          <figcaption>
+            <p>It's the first Node.js framework that actually made me say <strong>Wow!</strong></p>
+            <p>
+              <small>Source: jiniandjia.com/blog/?tag=loans</small>
+            </p>
+          </figcaption>
+        </figure>
+      </section>
+      <section>
+        <h1>Demo App</h1>
+        <h3>Real-Time Dashboard</h3>
+        <p>
+          <br />Find the code on <a href="https://github.com/zohararad/sails-dash" target="_blank">Github</a>
+        </p>
+      </section>
+    </div>
+  </div>
+
+  <script src="../reveal-js-2.5.0/lib/js/head.min.js"></script>
+  <script src="../reveal-js-2.5.0/js/reveal.min.js"></script>
+
+  <script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+      controls: false,
+      progress: true,
+      history: true,
+      center: true,
+      loop: true,
+
+      theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+      transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+      // Optional libraries used to extend on reveal.js
+      dependencies: [
+        { src: '../reveal-js-2.5.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        // Syntax highlight for <code> elements
+        { src: '../reveal-js-2.5.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+      ]
+    });
+
+  </script>
+</body>
+</html>
