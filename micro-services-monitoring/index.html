@@ -33,8 +33,8 @@
 
     <div class="slides">
       <section>
-        <h2>Effective Monitoring</h2>
-        <h4>Using Sensu to monitor your micro-services architecture</h4>
+        <h2>Effectively Monitor</h2>
+        <h4>Your micro-services architecture</h4>
         <footer>
           <p>
             <small>Zohar Arad. &copy; 2014</small>
@@ -45,177 +45,248 @@
         <h2>About Me</h2>
         <ul>
           <li>Full-Stack Web Developer</li>
-          <li>CTO at Quicklizard</li>
+          <li>Lead-Tech at Quicklizard Ltd.</li>
           <li>Freelance consultant &amp; Trainer</li>
         </ul>
       </section>
       <section>
-        <h2>The Quicklizard Story</h2>
+        <h2>Why do we need monitoring?</h2>
+      </section>
+      <section>
+        <h2>Real Time Visibility</h2>
         <ul>
-          <li>Real-Time eCommerce BI as-a-service</li>
-          <li>Grew from monolithic Rails to micro-services in 2012</li>
-          <li>9 different internal micro-services (Ruby / Scala)</li>
-          <li>~35 instance cluster</li>
-          <li>5 different DBs</li>
-          <li>No full-time DevOps</li>
+          <li>What's happening with my application NOW?</li>
+          <li>Is everything working properly?</li>
+          <li>Where are my sore points?</li>
         </ul>
       </section>
       <section>
-        <h2>How we used to monitor stuff</h2>
+        <h2>Real-Time and Historical Analysis</h2>
         <ul>
-          <li>Monit (OS services)</li>
-          <li>collectd (funky graphs - OS level)</li>
-          <li>Munin (custom graphs - OS level + running services)</li>
-          <li>9pm phone-calls - Something is broken</li>
-          <li>Manual reaction to problems (panic now!)</li>
+          <li>Why did things break after deployment?</li>
+          <li>How can I find bottlenecks?</li>
+          <li>Is my application working well over time?</li>
         </ul>
       </section>
       <section>
-        <h2>Obviously this didn't scale well</h2>
-      </section>
-      <section>
-        <h2>My Monitoring Philosophy</h2>
+        <h2>Automatic Reaction</h2>
         <ul>
-          <li>Automatic reaction is paramount!</li>
-          <li>Too many graphs are useless</li>
-          <li>Know what's going on <strong>now</strong> and react</li>
-          <li>High CPU is a symptom not a problem (app over infra.)</li>
-          <li>Monitor only what you can react to</li>
+          <li>What do we do when things stop working?</li>
+          <li>Service resurrection</li>
+          <li>OS housekeeping</li>
+          <li>Reacting to node failures</li>
+          <li>Load changes</li>
+          <li>Cluster maintenance</li>
         </ul>
       </section>
       <section>
-        <h2>My Monitoring Solution Requirements</h2>
+        <p>
+          Monitoring is about <strong>knowledge</strong>, <strong>control</strong> and <strong>preemption</strong>.
+        </p>
+        <p>
+          We monitor stuff so we can <strong>meet our SLA</strong> without losing sleep.
+        </p>
+      </section>
+      <section>
+        <h3>From monolithic to service-oriented architecture</h3>
+      </section>
+      <section>
+        <h3>Monitoring Monolithic Applications</h3>
         <ul>
-          <li>Automatic Reaction (so long Munin, Riemann and co.)</li>
-          <li>Scalable / Distributed (just like my architecture)</li>
-          <li>Easily extensible (so long Nagios, Zenoss and co.)</li>
-          <li>Programmer-friendly</li>
-          <li>Code-oriented rather than UI-oriented</li>
+          <li>Small number of servers</li>
+          <li>Limited number of metrics (OS, App)</li>
+          <li>Centralized model (everything is in one place)</li>
+          <li>Relatively straight-forward monitoring &amp; analysis</li>
+        </ul>
+      </section>
+      <section>
+        <p>When things break in a monolithic application our course of action is usually simple</p>
+      </section>
+      <section>
+        <ul>
+          <li>Login to server</li>
+          <li>Check OS health</li>
+          <li>Check services</li>
+          <li>Check logs</li>
+          <li>Find, fix and deploy</li>
+        </ul>
+      </section>
+      <section>
+        <p>Now, imagine doing that on a cluster with 50 machines</p>
+      </section>
+      <section>
+        <h3>Challenges of Monitoring Micro-Services</h3>
+        <ul>
+          <li>Many machines (which log file do I look at?)</li>
+          <li>Different types of applications (which service broke?)</li>
+          <li>Many moving parts (which MongoDB node failed?)</li>
+          <li>A lot of fragmented information to sift through</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Clearly, we need a different approach</h3>
+        <ul>
+          <li>Centralized information aggregation</li>
+          <li>Real-time visibility of service health</li>
+          <li>Focus on problems by severity (prioritizing human resources)</li>
+          <li>Powerful analysis tools (tail | grep isn't enough)</li>
+          <li>Scalable, cluster-oriented solutions</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Centralized log visualization with Kibana</h3>
+      </section>
+      <section>
+        <h3>Kibana in a nutshell</h3>
+        <ul>
+          <li>Aggregate logs / time-stamped data into Elastic Search</li>
+          <li>Interact with data, search &amp; analyse using Kibana</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Kibana in a nutshell</h3>
+        <ul>
+          <li>Use common log aggregators - Logstash, Fluentd, Flume</li>
+          <li>Scale horizontally with Elastic Search</li>
+          <li>Enjoy rich indexing and querying capabilities from a central UI</li>
         </ul>
       </section>
       <section>
         <figure>
-          <img src="http://tstoaddicts.files.wordpress.com/2013/08/menu_premium_homerbuddha.png" style="border-width: 1px; padding:5px;">
+          <img src="img/kibana-dashboard-1.png" />
           <figcaption>
             <p>
-              <small>Source: tstoaddicts.com</small>
+              <small>Kibana Dashboard</small>
             </p>
           </figcaption>
         </figure>
-        <h2>The Zen of Sensu</h2>
       </section>
       <section>
-        <h2>What is Sensu</h2>
-        <p>Sensu is a distributed monitoring framework written in Ruby</p>
-      </section>
-      <section>
-        <h2>Why Sensu?</h2>
+        <h3>What can I do with Kibana you ask?</h3>
         <ul>
-          <li>Distributed via RabbitMQ</li>
-          <li>Programmer oriented</li>
-          <li>Extensible through DSL for authoring checks and handlers</li>
-          <li>Easy to set up and pick up</li>
-          <li>Sensible defaults (OS-level monitoring)</li>
-          <li>Great community with dozens of plugins</li>
+          <li>Collect logs from all your services into one place</li>
+          <li>Analyse log data in a visual way</li>
+          <li>Filter data by source and time-frame</li>
+          <li>Save and share queries</li>
+          <li>Group queries into contextual dashboards</li>
         </ul>
       </section>
       <section>
-        <h2>Sensu at Quicklizard</h2>
+        <h3>Why should I use Kibana?</h3>
         <ul>
-          <li>Measure OS-level KPIs (load, disk)</li>
-          <li>Measure App level KPIs (GET /api/kpi / Thrift)</li>
-          <li>Default handling via email notifications (choose your own)</li>
-          <li>Optional handling to Dashing (surface KPIs to dashboard)</li>
-          <li>One real-time dashboard (5 widgets)</li>
-          <li>Automatic reaction (auto-scaling) in the pipeline</li>
+          <li>Built on top of open-source, battle-proven technologies</li>
+          <li>Actively developed as part of the Elastic Search Project</li>
+          <li>Scalable thanks to Elastic Search</li>
+          <li>Distributed thanks to Logstash (or others)</li>
+          <li>Application agnostic (data formatted by log aggregator)</li>
+          <li><strong>tail -f | grep something</strong> doesn't scale</li>
         </ul>
       </section>
       <section>
-        <h2>My Monitoring Routine</h2>
+        <h3>When should I use Kibana?</h3>
         <ul>
-          <li>Get notifications via email</li>
-          <li>Check application KPIs via Dashing</li>
-          <li>Manually react to problems surfaced to dashboard</li>
-          <li>Automatically react to recurring problems (restart / rescale) in the near future</li>
+          <li>Logs are your main source of information</li>
+          <li>Sending metrics from your applications isn't realistic</li>
+          <li>You need to query the same data in multiple ways</li>
+          <li>You're happy with an in-house, self-hosted solution</li>
         </ul>
       </section>
       <section>
-        <p>Let's take a quick look at our Dashing Dashboard</p>
-      </section>
-
-      <section>
-        <h2>Why should you use it?</h2>
-      </section>
-      <section>
-        <p>Measure anything at ease (OS, HTTP, Thrift, etc.)</p>
-      </section>
-      <section>
-        <p>Flexible, multiple reactions (notifications, graphs, custom code)</p>
-      </section>
-      <section>
-        <p>Interoperability (Librato, Geckoboard, Graphite, GTalk, Hipchat, etc.)</p>
-      </section>
-      <section>
-        <p>Vibrant community with dozens of plugins (Mongo, Percona, Redis etc.)</p>
-      </section>
-      <section>
-        <p>Easily extensible to fit your needs using a single, unified DSL</p>
-      </section>
-      <section>
-        <p>Fits multiple scenarios by solving one problem - measure and react</p>
-      </section>
-      <section>
-        <h2>Visualising Sensu</h2>
-        <p>Measuring and reacting isn't enough.</p>
-        <p>We often need a bit of history to find the root of a problem</p>
-      </section>
-      <section>
-        <h2>Visualising Sensu</h2>
-        <p>Sensu can be set up to send measurement metrics to a host of visualizing tools</p>
-      </section>
-      <section>
-        <h2>SaaS Graphing Tools</h2>
+        <h3>Now What?</h3>
+        <p>Check out <a href="http://www.elasticsearch.org/overview/kibana/" target="_blank">Kibana's</a> Home Page</p>
+        <hr />
+        <h4>Check out other solutions</h4>
         <ul>
           <li>
-            <a href="https://metrics.librato.com/" target="_blank">Librato</a>
+            <a href="https://github.com/etsy/statsd/" target="_blank">Statsd</a>
           </li>
           <li>
-            <a href="http://www.geckoboard.com/" target="_blank">Gecko Board</a>
-          </li>
-          <li>
-            <a href="http://www.datadoghq.com/" target="_blank">Data Dog</a>
-          </li>
-          <li>
-            <a href="https://tempo-db.com/" target="_blank">TempoDB</a>
+            <a href="http://opentsdb.net/" target="_blank">OpenTSDB</a>
           </li>
         </ul>
-      </section>
-      <section>
-        <h2>Self-Hosted graphing tools</h2>
         <ul>
           <li>
             <a href="http://graphite.wikidot.com/" target="_blank">Graphite</a>
           </li>
           <li>
-            <a href="http://opentsdb.net/" target="_blank">OpenTSDB</a>
+            <a href="https://metrics.librato.com/" target="_blank">Librato</a>
           </li>
           <li>
-            <a href="www.elasticsearch.org/overview/kibana/" target="_blank">Kibana</a>
-          </li>
-          <li>
-            <a href="http://shopify.github.io/dashing/" target="_blank">Dashing</a>
+            <a href="http://www.geckoboard.com/" target="_blank">Geckoboard</a>
           </li>
         </ul>
       </section>
       <section>
-        <h2>Kibana at a glance</h2>
+        <h2>Monitor Everything with Sensu</h2>
+      </section>
+      <section>
+        <h3>Sensu in a nutshell</h3>
         <ul>
-          <li>Open-Source logs and time-stamped data visualising tool</li>
-          <li>Built to scale on top of ElasticSearch</li>
-          <li>Multiple data-sources (Flume, Logstash, Fluentd)</li>
-          <li>Data is searchable - Great for historical analysis</li>
-          <li>Great for making sense of large amounts of data</li>
+          <li>Distributed checks &amp; handlers system written in Ruby</li>
+          <li>Distributed Server / Client architecture on top of RabbitMQ</li>
+          <li>Monitor anything by running a series of checks</li>
+          <li>React to problems / results by designating handlers</li>
         </ul>
+      </section>
+      <section>
+        <h3>Sensu in a nutshell</h3>
+        <p>Sensu's winning feature is its simple operation model:</p>
+        <p>
+          Tell me <strong>what to check</strong>, and how to <strong>handle results</strong>
+        </p>
+      </section>
+      <section>
+        <h3>What can I do with Sensu?</h3>
+        <ul>
+          <li>Check server load and email me if it's above 90%</li>
+          <li>Empty <strong>/var/log</strong> if disk-space is above 75%</li>
+          <li>Notify me over XMPP if Nginx is down</li>
+          <li>Check that <strong>/api/kpi</strong> returns <strong>200</strong> and SMS if not</li>
+          <li>Add more workers if worker queue is full</li>
+          <li>Count errors in log files and send results to Graphite</li>
+          <li>Check if death-star is near and alert Alderaan High Council</li>
+        </ul>
+      </section>
+      <section>
+        <h3>How does Sensu work?</h3>
+        <figure>
+          <img src="img/sensu-operation-model.svg" height="580" />
+        </figure>
+      </section>
+      <section>
+        <h3>Why should I use Sensu?</h3>
+        <ul>
+          <li>Distributed and scalable - Built for the cloud</li>
+          <li>Monitor everything from OS to Service Health</li>
+          <li>Multiple handlers per check</li>
+          <li>Great for real-time monitoring or historical analysis</li>
+          <li>Great 3rd-party integration (Graphite, Dashing, Pager Duty)</li>
+          <li>Highly customizable via straight-forward Ruby DSL</li>
+          <li>Open-Source, actively maintained, vibrant community</li>
+          <li>Lot's of plugins to choose from</li>
+        </ul>
+      </section>
+      <section>
+        <h3>What Now?</h3>
+        <p>
+          Visit the <a href="http://sensuapp.org" target="_blank">Sensu Website</a>
+        </p>
+        <p>
+          Check out the <a href="https://github.com/sensu/sensu-community-plugins" target="_blank">Community Plugins Repo</a> on Github.
+        </p>
+      </section>
+      <section>
+        <h2>Putting it all together</h2>
+      </section>
+      <section>
+        <figure>
+          <img src="img/sensu-kibana-setup.svg"  height="580" />
+          <figcaption>
+            <p>
+              <small>Logstash, Kibana &amp; Sensu Setup Example</small>
+            </p>
+          </figcaption>
+        </figure>
       </section>
       <section>
         <h2>Questions?</h2>
