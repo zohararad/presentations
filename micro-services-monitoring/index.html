@@ -1,347 +1,503 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-
   <title>Monitoring Micro-Service Architectures</title>
-
+  <meta charset="utf-8">
   <meta name="description" content="monitoring micro-services architectures">
   <meta name="author" content="Zohar Arad">
+  <meta name="viewport" content="width=792, user-scalable=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link rel="stylesheet" href="../shower/themes/ribbon/styles/screen.css">
+  <style>
+    .slide h3{
+      font-weight: bold;
+      font-size: 32px;
+    }
 
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    .shout h3 {
+      font-size: 60px;
+      font-weight: bold;
+      line-height: 1.4;
+      margin-top: 80px;
+    }
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    .shout h2 small {
+      font-size: 60px;
+    }
 
-  <link rel="stylesheet" href="../reveal-js-2.5.0/css/reveal.min.css">
-  <link rel="stylesheet" href="../reveal-js-2.5.0/css/theme/solarized.css" id="theme">
+    .center {
+      text-align: center;
+    }
 
-  <!-- For syntax highlighting -->
-  <link rel="stylesheet" href="../reveal-js-2.5.0/lib/css/zenburn.css">
+    figcaption, pre{
+      font-size: 18px;
+    }
 
-  <!-- If the query includes 'print-pdf', use the PDF print sheet -->
-  <script>
-    document.write( '<link rel="stylesheet" href="../reveal-js-2.5.0/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-  </script>
-
-  <!--[if lt IE 9]>
-  <script src="../reveal-js-2.5.0/lib/js/html5shiv.js"></script>
-  <![endif]-->
+    small {
+      font-size: 16px;
+    }
+  </style>
 </head>
-<body>
-  <div class="reveal">
-
-    <div class="slides">
-      <section>
-        <h2>Effectively Monitor</h2>
-        <h4>Your micro-services architecture</h4>
-        <footer>
-          <p>
-            <small>Zohar Arad. &copy; 2014</small>
-          </p>
-        </footer>
-      </section>
-      <section>
-        <h2>About Me</h2>
-        <ul>
-          <li>Full-Stack Web Developer</li>
-          <li>Lead-Tech at Quicklizard Ltd.</li>
-          <li>Freelance consultant &amp; Trainer</li>
-        </ul>
-      </section>
-      <section>
-        <h2>Why do we need monitoring?</h2>
-      </section>
-      <section>
-        <h2>Real Time Visibility</h2>
-        <ul>
-          <li>What's happening with my application NOW?</li>
-          <li>Is everything working properly?</li>
-          <li>Where are my sore points?</li>
-        </ul>
-      </section>
-      <section>
-        <h2>Real-Time and Historical Analysis</h2>
-        <ul>
-          <li>Why did things break after deployment?</li>
-          <li>How can I find bottlenecks?</li>
-          <li>Is my application working well over time?</li>
-        </ul>
-      </section>
-      <section>
-        <h2>Automatic Reaction</h2>
-        <ul>
-          <li>What do we do when things stop working?</li>
-          <li>Service resurrection</li>
-          <li>OS housekeeping</li>
-          <li>Reacting to node failures</li>
-          <li>Load changes</li>
-          <li>Cluster maintenance</li>
-        </ul>
-      </section>
-      <section>
-        <p>
-          Monitoring is about <strong>knowledge</strong>, <strong>control</strong> and <strong>preemption</strong>.
-        </p>
-        <p>
-          We monitor stuff so we can <strong>meet our SLA</strong> without losing sleep.
-        </p>
-      </section>
-      <section>
-        <h3>From monolithic to service-oriented architecture</h3>
-      </section>
-      <section>
-        <h3>Monitoring Monolithic Applications</h3>
-        <ul>
-          <li>Small number of servers</li>
-          <li>Limited number of metrics (OS, App)</li>
-          <li>Centralized model (everything is in one place)</li>
-          <li>Relatively straight-forward monitoring &amp; analysis</li>
-        </ul>
-      </section>
-      <section>
-        <p>When things break in a monolithic application our course of action is usually simple</p>
-      </section>
-      <section>
-        <ul>
-          <li>Login to server</li>
-          <li>Check OS health</li>
-          <li>Check services</li>
-          <li>Check logs</li>
-          <li>Find, fix and deploy</li>
-        </ul>
-      </section>
-      <section>
-        <p>Now, imagine doing that on a cluster with 50 machines</p>
-      </section>
-      <section>
-        <h3>Challenges of Monitoring Micro-Services</h3>
-        <ul>
-          <li>Many machines (which log file do I look at?)</li>
-          <li>Different types of applications (which service broke?)</li>
-          <li>Many moving parts (which MongoDB node failed?)</li>
-          <li>A lot of fragmented information to sift through</li>
-        </ul>
-      </section>
-      <section>
-        <h3>Clearly, we need a different approach</h3>
-        <ul>
-          <li>Centralized information aggregation</li>
-          <li>Real-time visibility of service health</li>
-          <li>Focus on problems by severity (prioritizing human resources)</li>
-          <li>Powerful analysis tools (tail | grep isn't enough)</li>
-          <li>Scalable, cluster-oriented solutions</li>
-        </ul>
-      </section>
-      <section>
-        <h3>Centralized log visualization with Kibana</h3>
-      </section>
-      <section>
-        <h3>Kibana in a nutshell</h3>
-        <ul>
-          <li>Aggregate logs / time-stamped data into Elastic Search</li>
-          <li>Interact with data, search &amp; analyse using Kibana</li>
-        </ul>
-      </section>
-      <section>
-        <h3>Kibana in a nutshell</h3>
-        <ul>
-          <li>Use common log aggregators - Logstash, Fluentd, Flume</li>
-          <li>Scale horizontally with Elastic Search</li>
-          <li>Enjoy rich indexing and querying capabilities from a central UI</li>
-        </ul>
-      </section>
-      <section>
-        <figure>
-          <img src="img/kibana-dashboard-1.png" />
-          <figcaption>
-            <p>
-              <small>Kibana Dashboard</small>
-            </p>
-          </figcaption>
-        </figure>
-      </section>
-      <section>
-        <h3>What can I do with Kibana you ask?</h3>
-        <ul>
-          <li>Collect logs from all your services into one place</li>
-          <li>Analyse log data in a visual way</li>
-          <li>Filter data by source and time-frame</li>
-          <li>Save and share queries</li>
-          <li>Group queries into contextual dashboards</li>
-        </ul>
-      </section>
-      <section>
-        <h3>Why should I use Kibana?</h3>
-        <ul>
-          <li>Built on top of open-source, battle-proven technologies</li>
-          <li>Actively developed as part of the Elastic Search Project</li>
-          <li>Scalable thanks to Elastic Search</li>
-          <li>Distributed thanks to Logstash (or others)</li>
-          <li>Application agnostic (data formatted by log aggregator)</li>
-          <li><strong>tail -f | grep something</strong> doesn't scale</li>
-        </ul>
-      </section>
-      <section>
-        <h3>When should I use Kibana?</h3>
-        <ul>
-          <li>Logs are your main source of information</li>
-          <li>Sending metrics from your applications isn't realistic</li>
-          <li>You need to query the same data in multiple ways</li>
-          <li>You're happy with an in-house, self-hosted solution</li>
-        </ul>
-      </section>
-      <section>
-        <h3>Now What?</h3>
-        <p>Check out <a href="http://www.elasticsearch.org/overview/kibana/" target="_blank">Kibana's</a> Home Page</p>
-        <hr />
-        <h4>Check out other solutions</h4>
-        <ul>
-          <li>
-            <a href="https://github.com/etsy/statsd/" target="_blank">Statsd</a>
-          </li>
-          <li>
-            <a href="http://opentsdb.net/" target="_blank">OpenTSDB</a>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <a href="http://graphite.wikidot.com/" target="_blank">Graphite</a>
-          </li>
-          <li>
-            <a href="https://metrics.librato.com/" target="_blank">Librato</a>
-          </li>
-          <li>
-            <a href="http://www.geckoboard.com/" target="_blank">Geckoboard</a>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <h2>Monitor Everything with Sensu</h2>
-      </section>
-      <section>
-        <h3>Sensu in a nutshell</h3>
-        <ul>
-          <li>Distributed Server / Client architecture on top of RabbitMQ</li>
-          <li>Checks &amp; handlers system written in Ruby</li>
-          <li>Monitor anything by running a series of checks</li>
-          <li>React to problems / results by designating handlers</li>
-        </ul>
-      </section>
-      <section>
-        <h3>What can I do with Sensu?</h3>
-        <ul>
-          <li>Check server load and email me if it's above 90%</li>
-          <li>Empty <strong>/var/log</strong> if disk-space is above 75%</li>
-          <li>Notify me over XMPP if Nginx is down</li>
-          <li>Check that <strong>/api/kpi</strong> returns <strong>200</strong> and SMS if not</li>
-          <li>Add more workers if worker queue is full</li>
-          <li>Count errors in log files and send results to Graphite</li>
-          <li>Check if death-star is near and alert Alderaan High Council</li>
-        </ul>
-      </section>
-      <section>
-        <h3>How does Sensu work?</h3>
-        <figure>
-          <img src="img/sensu-operation-model.svg" height="580" />
-        </figure>
-      </section>
-      <section>
-        <h3>Why should I use Sensu?</h3>
-        <ul>
-          <li>Distributed and scalable - Built for the cloud</li>
-          <li>Monitor everything from OS to Service Health</li>
-          <li>Multiple handlers per check</li>
-          <li>Great for real-time monitoring or historical analysis</li>
-          <li>Great 3rd-party integration (Graphite, Dashing, Pager Duty)</li>
-          <li>Highly customizable via straight-forward Ruby DSL</li>
-          <li>Open-Source, actively maintained, vibrant community</li>
-          <li>Lot's of plugins to choose from</li>
-        </ul>
-      </section>
-      <section>
-        <h2>Winning Features</h2>
-      </section>
-      <section>
-        <h3>Simple operation model</h3>
-        <p>
-          Tell me <strong>what to check</strong>, and how to <strong>handle results</strong><br />(UI, notifications etc.)
-        </p>
-      </section>
-      <section>
-        <h3>One way of doing things</h3>
-        <p>
-          Checks / handlers are written using Ruby DSL<br />(no Bash, Python, Bla hell)
-        </p>
-      </section>
-      <section>
-        <h3>Data mutation</h3>
-        <p>
-          Metric data can be mutated to work with different handlers
-        </p>
-      </section>
-      <section>
-        <h3>What Now?</h3>
-        <p>
-          Visit the <a href="http://sensuapp.org" target="_blank">Sensu Website</a>
-        </p>
-        <p>
-          Check out the <a href="https://github.com/sensu/sensu-community-plugins" target="_blank">Community Plugins Repo</a> on Github.
-        </p>
-      </section>
-      <section>
-        <h2>Putting it all together</h2>
-      </section>
-      <section>
-        <figure>
-          <img src="img/sensu-kibana-setup.svg"  height="580" />
-          <figcaption>
-            <p>
-              <small>Logstash, Kibana &amp; Sensu Setup Example</small>
-            </p>
-          </figcaption>
-        </figure>
-      </section>
-      <section>
-        <h2>Questions?</h2>
-      </section>
-      <section>
-        <h2>Thank You!</h2>
-        <p>
-          <strong>Presentation</strong>: <a href="http://goo.gl/68A2bj" target="_blank">http://goo.gl/68A2bj</a>
-        </p>
-        <p>
-          <strong>Email Me </strong>: zohar@zohararad.com
-        </p>
-      </section>
+<body class="list">
+  <header class="caption">
+    <h1>Effectively Monitor Your Micro-Service Architectures</h1>
+    <p>Zohar Arad. &copy; 2014</p>
+  </header>
+  <section class="slide">
+    <div>
+      <h2>About Me</h2>
+      <ul>
+        <li>Full-Stack Web Developer</li>
+        <li>Lead-Tech at Quicklizard Ltd.</li>
+        <li>Freelance consultant &amp; trainer</li>
+      </ul>
     </div>
-  </div>
-
-  <script src="../reveal-js-2.5.0/lib/js/head.min.js"></script>
-  <script src="../reveal-js-2.5.0/js/reveal.min.js"></script>
-
-  <script>
-
-    // Full list of configuration options available here:
-    // https://github.com/hakimel/reveal.js#configuration
-    Reveal.initialize({
-      controls: false,
-      progress: true,
-      history: true,
-      center: true,
-      loop: true,
-
-      theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-      transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
-
-      // Optional libraries used to extend on reveal.js
-      dependencies: [
-        { src: '../reveal-js-2.5.0/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-        // Syntax highlight for <code> elements
-        { src: '../reveal-js-2.5.0/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-      ]
-    });
-
-  </script>
+  </section>
+  <section class="slide shout center">
+    <div>
+      <h3>Why do we need monitoring?</h3>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Real Time Visibility</h2>
+      <ul>
+        <li>What's happening with my application NOW?</li>
+        <li class="next">Is everything working properly?</li>
+        <li class="next">Where are my sore points?</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Real-Time and Historical Analysis</h2>
+      <ul>
+        <li>Why did things break after deployment?</li>
+        <li class="next">How can I find bottlenecks?</li>
+        <li class="next">Is my application working well over time?</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Automatic Reaction</h2>
+      <ul>
+        <li>What do we do when things stop working?</li>
+        <li class="next">Service resurrection</li>
+        <li class="next">OS housekeeping</li>
+        <li class="next">Reacting to node failures</li>
+        <li class="next">Load changes</li>
+        <li class="next">Cluster maintenance</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <p>
+        Monitoring is about <strong>knowledge</strong>, <strong>control</strong> and <strong>reaction</strong>.
+        <br/>
+        We monitor stuff so we can <strong>meet our SLA</strong> without losing sleep.
+      </p>
+    </div>
+  </section>
+  <section class="slide shout">
+    <div>
+      <h3>From Monolithic to Service-Oriented Architectures</h3>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>wheretoe.at</h2>
+      <p>An imaginary application for restaurant recommendations</p>
+      <ul>
+        <li>Web app (Rails / Django/ Foo) running under Nginx</li>
+        <li>Postgresql Server stores all data</li>
+        <li>Total of 4 servers (3 Web + 1 DB)</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>wheretoe.at</h2>
+      <p>When monitoring a monolithic application, we usually look at a <strong>limited</strong> number of things for breakage</p>
+      <ul>
+        <li>Server health</li>
+        <li class="next">Nginx access logs</li>
+        <li class="next">Application logs</li>
+        <li class="next">DB Slow query log</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>wheretoe.at</h2>
+      <p>Now, let's imagine we break up our monolithic application into specialized services</p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>wheretoe.at - V2</h2>
+      <ul>
+        <li>Social Login Service</li>
+        <li>Venue Database</li>
+        <li>Recommendation Engine</li>
+        <li>Web Application</li>
+      </ul>
+    </div>
+  </section>
+  <section class="shout slide">
+    <div>
+      <h2>What Changed?</h2>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <table>
+        <tr>
+          <th scope="col">&nbsp;</th>
+          <th>Monolithic</th>
+          <th>Service-Oriented</th>
+        </tr>
+        <tr>
+          <th scope="row">Node Types</th>
+          <td>Few</td>
+          <td>Many</td>
+        </tr>
+        <tr>
+          <th scope="row">Log Sources</th>
+          <td>Few &amp; Similar</td>
+          <td>Many &amp; Different</td>
+        </tr>
+        <tr>
+          <th scope="row">Monitored Endpoints</th>
+          <td>App / DB / OS</td>
+          <td>Apps / APIs / DBs / OS</td>
+        </tr>
+        <tr>
+          <th scope="row">Actionable Data Size</th>
+          <td>Small / Medium</td>
+          <td>Medium / Large</td>
+        </tr>
+        <tr>
+          <th scope="row">Data Centralization</th>
+          <td>Relatively Centralized</td>
+          <td>Completely Decentralized</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Let's Recap</h2>
+      <p>
+        One of our main challenges in monitoring service-oriented architectures is <strong>finding anomalies</strong>
+        in <em>large</em> amounts of <em>distributed</em>, <em>variable</em> data.
+      </p>
+      <p>
+        Usually, these anomalies signify either a breakage or a problem requiring attention.
+      </p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Back at wheretoe.at H.Q.</h2>
+      <p>Let's see how we can monitor our Web application and social login service.</p>
+      <h3>Monitoring Strategy</h3>
+      <p>Look at Nginx access logs and find HTTP requests with status 200, 404, 500</p>
+    </div>
+  </section>
+  <section class="slide shout">
+    <div>
+      <h2><small>Say hello to</small><br />Kibana</h2>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Kibana in a nutshell</h2>
+      <p>Kibana is a visual interface for interacting with large amounts of aggregated log data.</p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Kibana Mechanics</h2>
+      <ul>
+        <li>Use common log aggregators for data aggregation</li>
+        <li>Use Elastic Search as a centralized log aggregation server</li>
+        <li>Define search queries on log data using Kibana</li>
+        <li>Visualize query results as graphs and widgets</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Setup at wheretoe.at</h2>
+      <ul>
+        <li>Elastic Search Cluster</li>
+        <li>Kibana UI</li>
+        <li>LogStash on each Nginx node</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>LogStash Example - Input</h2>
+      <pre>
+        <code>input {</code>
+          <code>  file {</code>
+            <code>    type => "nginx_access"</code>
+            <code>    path => ["/var/log/nginx/**"]</code>
+            <code>    exclude => ["*.gz", "error.*"]</code>
+            <code>    discover_interval => 10</code>
+          <code>  }</code>
+        <code>}</code>
+      </pre>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>LogStash Example - Filter</h2>
+      <pre>
+        <code>filter {</code>
+          <code>  grok {</code>
+            <code>    type => nginx_access</code>
+            <code>    pattern => "%{COMBINEDAPACHELOG}"</code>
+          <code>  }</code>
+        <code>}</code>
+      </pre>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>LogStash Example - Output</h2>
+      <pre>
+        <code>output {</code>
+          <code>  redis {</code>
+            <code>    host => "hostname-of-centralized-log-server"</code>
+            <code>    data_type => "list"</code>
+            <code>    key => "logstash"</code>
+          <code>  }</code>
+        <code>}</code>
+      </pre>
+    </div>
+  </section>
+  <section class="slide shout center">
+    <div>
+      <h3>A short while later...</h3>
+      <p class="note">
+        Nginx -> LogStash -> Redis -> Elastic Search
+      </p>
+    </div>
+  </section>
+  <section class="slide center">
+    <div>
+      <figure>
+        <img src="img/response-codes-graph.png" />
+        <figcaption>
+          <p class="note">HTTP Response Codes Graph</p>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Let's Recap</h2>
+      <p>Our challenge is finding anomalies in large, variable amounts of data</p>
+      <table>
+        <tr>
+          <th scope="col">Problem</th>
+          <th>Solution</th>
+        </tr>
+        <tr>
+          <th scope="row">Data Variance</th>
+          <td>LogStash (Grok)</td>
+        </tr>
+        <tr>
+          <th scope="row">Data Aggregation</th>
+          <td>LogStash</td>
+        </tr>
+        <tr>
+          <th scope="row">Data Size</th>
+          <td>Elastic Search</td>
+        </tr>
+        <tr>
+          <th scope="row">Data Querying</th>
+          <td>Elastic Search</td>
+        </tr>
+        <tr>
+          <th scope="row">Visualization</th>
+          <td>Kibana</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>When should I use Kibana?</h2>
+      <ul>
+        <li>Logs are your main source of information</li>
+        <li class="next">Sending metrics from your applications isn't realistic</li>
+        <li class="next">You need to query the same data in multiple ways</li>
+        <li class="next">You need a unified way to sift through data from variable sources</li>
+        <li class="next">You're happy with an in-house, self-hosted solution</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide shout center">
+    <div>
+      <h3>So far so good?</h3>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h3>2am in the morning...</h3>
+      <blockquote>
+        <p>
+          <strong>Boss: </strong> Zohar? <br />
+          <strong>Me: </strong> Yes? <br />
+          <strong>Boss: </strong> Users can't login to our system...<br />
+          <strong>Me: </strong> Wasting an hour only to find out disk is full on login02.wheretoe.at
+        </p>
+      </blockquote>
+    </div>
+  </section>
+  <section class="slide shout">
+    <div>
+      <h3>Kibana helps me find problems, not deal with them!</h3>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Back at wheretoe.at H.Q.</h2>
+      <p>Let's see how we can monitor our login service KPI.</p>
+      <h3>Monitoring Strategy</h3>
+      <p>
+        Check OS health (disk, load, memory) &amp; number of active logins and SMS if things go wrong
+      </p>
+      <p class="note">
+        <small>* kept to minimum for sake of simplicity</small>
+      </p>
+    </div>
+  </section>
+  <section class="slide shout">
+    <div>
+      <h2><small>Say hello to</small><br />Sensu</h2>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h3>Sensu in a nutshell</h3>
+      <ul>
+        <li>Distributed, asynchronous checks and handlers system written in Ruby</li>
+        <li>Server / client architecture on top of RabbitMQ</li>
+        <li>Monitor anything by running a series of checks</li>
+        <li>React to problems / results by designating handlers</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h3>Sensu Mechanics</h3>
+      <figure class="center">
+        <img src="img/sensu-operation-model.svg" height="400" />
+      </figure>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Setup at wheretoe.at</h2>
+      <ul>
+        <li>RabbitMQ Server</li>
+        <li>Redis Server</li>
+        <li>Sensu Server</li>
+        <li>Sensu client on every monitored server</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h3>Sensu Example - Load Check</h3>
+      <pre>
+        <code>"check_load": {</code>
+        <code>  "command": "/etc/sensu/plugins/system/check-load.rb -c 5,10,15 -w 3,7,10",</code>
+        <code>  "interval": 60,</code>
+        <code>  "subscribers": ["common"],</code>
+        <code>  "handlers": ["sms", "graphite"]</code>
+        <code>}</code>
+      </pre>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h3>Sensu Example - SMS Handler</h3>
+      <pre>
+        <code>"sms": {</code>
+        <code>  "command": "/etc/sensu/handlers/notifications/pagerduty.rb",</code>
+        <code>  "severities": [ "warning","critical" ],</code>
+        <code>  "type": "pipe"</code>
+        <code>}</code>
+      </pre>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Let's Recap</h2>
+      <p>Our challenge is to identify different types of breakage and react in real time.</p>
+      <ol>
+        <li>Sensu let's us define different types of checks that are run at specified intervals</li>
+        <li>Check results are piped to designated handlers that decide how to react to breakage</li>
+      </ol>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Let's Recap</h2>
+      <p>We can check anything we like (it's just a Ruby script)</p>
+      <p>We can handle results in multiple ways based on criteria (eg. always send to Graphite, but only SMS when critical)</p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h3>Why should I use Sensu?</h3>
+      <ul>
+        <li>Distributed and scalable - Built for the cloud</li>
+        <li>Monitor anything from OS to Service Health</li>
+        <li>Great for both real-time or historical analysis</li>
+        <li>Excellent 3rd-party integration (Graphite, Dashing, Pager Duty)</li>
+        <li>Highly customizable via straight-forward Ruby DSL</li>
+        <li>Open-Source, actively maintained, vibrant community</li>
+        <li>Lot's of plugins to choose from</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide shout center">
+    <div>
+      <h3>Putting it all Together</h3>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <figure>
+        <img src="img/sensu-kibana-setup.svg"  height="500" />
+      </figure>
+    </div>
+  </section>
+  <section class="slide shout">
+    <div>
+      <h2>Questions?</h2>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Thank You!</h2>
+      <p>
+        <strong>Presentation</strong>: <a href="http://goo.gl/68A2bj" target="_blank">http://goo.gl/68A2bj</a>
+      </p>
+      <p>
+        <strong>Email Me </strong>: zohar@zohararad.com
+      </p>
+    </div>
+  </section>
+  <div class="progress"><div></div></div>
+  <script src="../shower/shower.min.js"></script>
 </body>
 </html>
