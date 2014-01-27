@@ -255,26 +255,12 @@
   </section>
   <section class="slide">
     <div>
-      <h2>LogStash Example - Filter</h2>
-      <pre>
-        <code>filter {</code>
-          <code>  grok {</code>
-            <code>    type => nginx_access</code>
-            <code>    pattern => "%{COMBINEDAPACHELOG}"</code>
-          <code>  }</code>
-        <code>}</code>
-      </pre>
-    </div>
-  </section>
-  <section class="slide">
-    <div>
       <h2>LogStash Example - Output</h2>
       <pre>
         <code>output {</code>
-          <code>  redis {</code>
-            <code>    host => "hostname-of-centralized-log-server"</code>
-            <code>    data_type => "list"</code>
-            <code>    key => "logstash"</code>
+          <code>  elasticsearch {</code>
+            <code>    host => "es01.wheretoe.at"</code>
+            <code>    port => "9300"</code>
           <code>  }</code>
         <code>}</code>
       </pre>
@@ -284,7 +270,7 @@
     <div>
       <h3>A short while later...</h3>
       <p class="note">
-        Nginx -> LogStash -> Redis -> Elastic Search
+        Nginx -> LogStash -> Elastic Search
       </p>
     </div>
   </section>
