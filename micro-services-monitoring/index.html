@@ -38,7 +38,7 @@
     }
   </style>
 </head>
-<body class="list">
+<body class="list" data-scroll="locked">
   <header class="caption">
     <h1>Effectively Monitor Your Micro-Service Architectures</h1>
     <p>Zohar Arad. &copy; 2014</p>
@@ -138,16 +138,17 @@
     <div>
       <h2>wheretoe.at - V2</h2>
       <ul>
-        <li>Social Login Service</li>
-        <li>Venue Database</li>
-        <li>Recommendation Engine</li>
-        <li>Web Application</li>
+        <li>Social Login Service - Sinatra App x 2 (Under Nginx)</li>
+        <li>User Database - Postgresql x 1 Node</li>
+        <li>Venue Database - Riak Cluster (5 Nodes)</li>
+        <li>Recommendation Engine - HBase Cluster (6 Nodes)</li>
+        <li>Web Application - Rails App x 4 (Under Nginx)</li>
       </ul>
     </div>
   </section>
   <section class="shout slide">
     <div>
-      <h2>What Changed?</h2>
+      <h3>What Changed from a monitoring perspective?</h3>
     </div>
   </section>
   <section class="slide">
@@ -179,9 +180,9 @@
           <td>Medium / Large</td>
         </tr>
         <tr>
-          <th scope="row">Data Centralization</th>
-          <td>Relatively Centralized</td>
-          <td>Completely Decentralized</td>
+          <th scope="row">Data Location</th>
+          <td>Relatively Close Together</td>
+          <td>Dispersed</td>
         </tr>
       </table>
     </div>
@@ -190,20 +191,38 @@
     <div>
       <h2>Let's Recap</h2>
       <p>
-        One of our main challenges in monitoring service-oriented architectures is <strong>finding anomalies</strong>
-        in <em>large</em> amounts of <em>distributed</em>, <em>variable</em> data.
+        We're trying to find problems / sore points by <strong>finding anomalies</strong> in log data.
       </p>
       <p>
-        Usually, these anomalies signify either a breakage or a problem requiring attention.
+        In monolithic setups, we usually work with smaller data sizes, from limited number of types and sources.
+      </p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Let's Recap</h2>
+      <p>
+        When moving to service-oriented setups, our log data sources grow in number and variance.
+      </p>
+      <p>
+        Therefore our challenges lie in dealing with larger sizes of variable sources of data effectively and efficiently.
       </p>
     </div>
   </section>
   <section class="slide">
     <div>
       <h2>Back at wheretoe.at H.Q.</h2>
-      <p>Let's see how we can monitor our Web application and social login service.</p>
-      <h3>Monitoring Strategy</h3>
+      <p>Let's see how we can monitor our new Web application and social login services.</p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Monitoring Strategy</h2>
       <p>Look at Nginx access logs and find HTTP requests with status 200, 404, 500</p>
+      <h3>Rational</h3>
+      <p>
+        Anomalous HTTP statuses signify breakage that need our attention
+      </p>
     </div>
   </section>
   <section class="slide shout">
@@ -215,14 +234,15 @@
     <div>
       <h2>Kibana in a nutshell</h2>
       <p>Kibana is a visual interface for interacting with large amounts of aggregated log data.</p>
+      <p>Kibana's working assumption is that log data analysis is a good way to find problems</p>
     </div>
   </section>
   <section class="slide">
     <div>
       <h2>Kibana Mechanics</h2>
       <ul>
-        <li>Use common log aggregators for data aggregation</li>
-        <li>Use Elastic Search as a centralized log aggregation server</li>
+        <li>Use common log aggregators (Logstash, Fluentd, Flume) for data aggregation</li>
+        <li>Use Elastic Search as a centralized log aggregation and indexing server</li>
         <li>Define search queries on log data using Kibana</li>
         <li>Visualize query results as graphs and widgets</li>
       </ul>
@@ -236,6 +256,11 @@
         <li>Kibana UI</li>
         <li>LogStash on each Nginx node</li>
       </ul>
+    </div>
+  </section>
+  <section class="slide shout">
+    <div>
+      <h3>LogStash - Hello World</h3>
     </div>
   </section>
   <section class="slide">
@@ -287,7 +312,13 @@
   <section class="slide">
     <div>
       <h2>Let's Recap</h2>
-      <p>Our challenge is finding anomalies in large, variable amounts of data</p>
+      <p>As our architecture evolves into small distributed services, our ability to find problems in each service becomes more limited.</p>
+      <p>Our challenge is finding anomalies in <strong>large</strong>, <strong>variable</strong> amounts of data and do something with our findings.</p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Let's Recap</h2>
       <table>
         <tr>
           <th scope="col">Problem</th>
@@ -364,6 +395,18 @@
       </p>
     </div>
   </section>
+  <section class="slide">
+    <div>
+      <h2>What are we trying to do?</h2>
+      <p>
+        We want to define a set of parameters that define the operational norm, check these parameters periodically and
+        handle abnormalities.
+      </p>
+      <p>
+        <strong>For example:</strong> High CPU and low number of logged-in users indicate we have a problem in our users DB server.
+      </p>
+    </div>
+  </section>
   <section class="slide shout">
     <div>
       <h2><small>Say hello to</small><br />Sensu</h2>
@@ -427,9 +470,14 @@
   <section class="slide">
     <div>
       <h2>Let's Recap</h2>
-      <p>Our challenge is to identify different types of breakage and react in real time.</p>
+      <p>Our challenge is to identify <strong>abnormal events</strong> in the ongoing operation of our system components and react to them in real-time.</p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Let's Recap</h2>
       <ol>
-        <li>Sensu let's us define different types of checks that are run at specified intervals</li>
+        <li>With Sensu we can identify abnormalities by running a series of various checks at specified intervals</li>
         <li>Check results are piped to designated handlers that decide how to react to breakage</li>
       </ol>
     </div>
@@ -445,7 +493,11 @@
     <div>
       <h3>Why should I use Sensu?</h3>
       <ul>
-        <li>Distributed and scalable - Built for the cloud</li>
+        <li>Distributed and scalable - Built for the cloud
+          <ul>
+            <li><small>Mention Nagios, Zenoss vs. Sensu</small></li>
+          </ul>
+        </li>
         <li>Monitor anything from OS to Service Health</li>
         <li>Great for both real-time or historical analysis</li>
         <li>Excellent 3rd-party integration (Graphite, Dashing, Pager Duty)</li>
@@ -479,7 +531,7 @@
         <strong>Presentation</strong>: <a href="http://goo.gl/68A2bj" target="_blank">http://goo.gl/68A2bj</a>
       </p>
       <p>
-        <strong>Email Me </strong>: zohar@zohararad.com
+        <strong>E:</strong> zohar@zohararad.com | <strong>Github:</strong> @zohararad | <strong>Twitter:</strong> @zohararad
       </p>
     </div>
   </section>
