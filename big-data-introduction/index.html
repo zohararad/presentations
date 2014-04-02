@@ -532,152 +532,30 @@
   <section class="slide">
     <div>
       <h2>Questions?</h2>
-      <h3>Thank You</h3>
-    </div>
-  </section>
-  <!--
-
-  <section class="slide">
-    <div>
-      <h2>C.A.P By Example</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Database</th>
-            <th>CAP</th>
-            <th>Data Model</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>Riak</th>
-            <td>A/P</td>
-            <td>Key / Value</td>
-          </tr>
-          <tr>
-            <th>Cassandra</th>
-            <td>A/P</td>
-            <td>Column-Oriented Key/Value</td>
-          </tr>
-          <tr>
-            <th>HBase</th>
-            <td>C/P</td>
-            <td>Column-Oriented</td>
-          </tr>
-          <tr>
-            <th>MongoDB</th>
-            <td>C/P</td>
-            <td>Document-Oriented</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-  <section class="slide">
-    <div>
-      <h3>Why do we need big data technologies?</h3>
       <p>
-        Modern day applications generate huge amounts of diverse data.<br />
-        Traditional RDBMs were not designed to handle these amounts of data efficiently and quickly.
+        See presentation on <a href="http://goo.gl/NOq2qX" target="_blank">http://goo.gl/NOq2qX</a>
+      </p>
+      <p>
+        Feel free to drop my a line:<br />
+        <strong>Email</strong>: zohar [AT] zohararad.com<br />
+        <strong>Github</strong>: zohararad
+      </p>
+      <p>
+        <strong>Thank You!</strong>
       </p>
     </div>
   </section>
-  <section class="slide">
-    <div>
-      <h3>Why do we need big data technologies?</h3>
-      <p>
-        Many business rely on personalisation, insights or BI as part of their business model.<br />
-        Generating such information from huge amounts of data isn't trivial and traditional solution fall short.
-      </p>
-    </div>
-  </section>
-  <section class="slide">
-    <div>
-      <h3>But how big is "really big" ?</h3>
-      <ul>
-        <li>There isn't a "magic" number beyond which we're in the "big data realm"</li>
-        <li>Generally speaking, we're looking at numbers in the TB and beyond</li>
-        <li>Even for smaller volumes, big data technologies might be more suitable</li>
-      </ul>
-      <p>
-        <strong>Conclusion: </strong> don't be afraid to try something out even at smaller scale.
-      </p>
-    </div>
-  </section>
-  <section class="slide">
-    <div>
-      <h3>Divide and Conquer</h3>
-      <p>Big data technologies can be divided into the following families:</p>
-      <ul>
-        <li>Storage &amp; Querying</li>
-        <li>Analysis &amp; BI</li>
-        <li>Real-Time</li>
-        <li>DBs</li>
-      </ul>
-    </div>
-  </section>
-  <section class="slide shout center">
-    <div>
-      <h2>Hadoop<br /><small>The Big Data Storage Layer</small></h2>
-    </div>
-  </section>
-  <section class="slide">
-    <div>
-      <p>Hadoop is a <strong>scalable</strong>, <strong>distributed</strong> file-system that serves as the basis for several big data technologies.</p>
-      <p>Hadoop's appeal is its ability to allow storage and retrieval of huge amounts while being horizontally scalable and fault-tolerant.</p>
-    </div>
-  </section>
-  <section class="slide">
-    <div>
-      <h3>Hadoop at a glance</h3>
-      <ul>
-        <li>Written in Java</li>
-        <li>Runs on top of Linux/Unix</li>
-        <li>File-System via HDFS</li>
-        <li>Data querying via M/R (is everyone familiar with M/R?)</li>
-        <li>Production-ready (no need to worry about adoption)</li>
-        <li>Install via distribution (Cloudera, Horton Works)</li>
-      </ul>
-    </div>
-  </section>
-  <section class="slide">
-    <div>
-      <h3>When do we use Hadoop?</h3>
-      <ul>
-        <li>Store lots of data (say access log files)</li>
-        <li>Query / Analyse of stored data (Pig, Hive)</li>
-        <li>Basis for other techs. (HBase, Accumulo, Shark, Mahout)</li>
-      </ul>
-    </div>
-  </section>
-  <section class="slide">
-    <div>
-      <h3>Points to take home</h3>
-      <ul>
-        <li>Hadoop is complex - Many moving parts</li>
-        <li>Usually used for querying (M/R) not just storage (HDFS)</li>
-        <li>You can install locally and play with it easily</li>
-        <li>Locall install with Pig / Hive / Scalding might be a good place to start</li>
-        <li>Before moving to production choose a distribution</li>
-      </ul>
-    </div>
-  </section>
-  <section class="slide shout center">
-    <div>
-      <h2>Hadoop M/R<br /><small>Querying Hadoop Data</small></h2>
-    </div>
-  </section>
-  <section class="slide">
-    <div>
-      <p>
-        So, now that we have many TBs of data in Hadoop, how do we query that data?<br />
-        Suppose we're storing access logs, and want to find out how many people visited each page of our app
-      </p>
-      <p>We need a way to efficiently read log entries, extract the request path and count occurrences of each path.</p>
-    </div>
-  </section>
-  -->
   <div class="progress"><div></div></div>
   <script src="../shower/shower.min.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-49621437-1', 'zohararad.github.io');
+    ga('send', 'pageview');
+
+  </script>
 </body>
 </html>
