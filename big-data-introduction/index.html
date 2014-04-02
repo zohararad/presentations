@@ -1,0 +1,683 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <title>Introduction to Big Data</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Introduction to Big Data">
+  <meta name="author" content="Zohar Arad">
+  <meta name="viewport" content="width=792, user-scalable=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link rel="stylesheet" href="../shower/themes/ribbon/styles/screen.css">
+  <style>
+    .slide h3{
+      font-weight: bold;
+      font-size: 32px;
+    }
+
+    .shout h3 {
+      font-size: 60px;
+      font-weight: bold;
+      line-height: 1.4;
+      margin-top: 80px;
+    }
+
+    .shout h2 small {
+      font-size: 60px;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    figcaption, pre{
+      font-size: 18px;
+    }
+
+    small {
+      font-size: 16px;
+    }
+
+    .full.white{
+      background-color: #fff;
+    }
+
+    .full figcaption p{
+      margin-top: -30px;
+      text-align: center;
+    }
+
+    .full figcaption p small{
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body class="list" data-scroll="locked">
+  <header class="caption">
+    <h1>Introduction to Big Data</h1>
+    <p>Zohar Arad. &copy; 2014</p>
+  </header>
+  <section class="slide">
+    <div>
+      <h2>About Me</h2>
+      <ul>
+        <li>Full-Stack Web Developer</li>
+        <li>Lead-Tech at Quicklizard Ltd.</li>
+        <li>Freelance consultant &amp; trainer</li>
+      </ul>
+      <p>I am <strong>not</strong> a big-data scientist or expert, but I am a big-data user.</p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Our agenda</h2>
+      <ul>
+        <li>Demystify the term "Big Data"</li>
+        <li>Find out what is Hadoop</li>
+        <li>Explore the realms of batch and real-time big data processing</li>
+        <li>Explore challenges of size, speed and scale in databases</li>
+        <li>Skim the surface of big-data technologies</li>
+        <li>Provide ways into the big-data world</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Non-Topics</h2>
+      <ul>
+        <li>No code examples</li>
+        <li>No deep-diving into things</li>
+        <li>Big picture, not finer details</li>
+        <li>Provide topics for self-learning and research</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide shout center">
+    <div>
+      <h2>Big Data<br /><small>Demystified</small></h2>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>What is big data?</h2>
+      <p>Big data is a collective term for a set technologies designed for storage, querying and analysis of extremely large data sets, sources and volumes.</p>
+      <p>Big data technologies come in where traditional off-the-shelf databases, data warehousing systems and analysis tools fall short.</p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>How did we end up with so much data?</h2>
+      <p>
+        <strong>Data Generation: </strong> Human (Internal) &map; Human (Social) &map; Machine<br />
+        <strong>Data Processing: </strong> Single Core &map; Multi-Core &map; Cluster / Cloud
+      </p>
+      <h3>An Important Side Note</h3>
+      <p>Big Data technologies are based on the concept of clustering - Many computers working in sync to process chunks of our data.</p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Not just size</h2>
+      <p>Big data isn't just about data size, but also about data volume, diversity and inter-connectedness.</p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Big data is</h2>
+      <p>Any attribute of our data that challenges either technological capabilities or business needs, like:</p>
+      <ul>
+        <li>Scaling, moving, storage and retrieval of ever-growing generated data</li>
+        <li>Processing many small data points in real-time</li>
+        <li>Analysing diverse semi-structured data from multiple sources</li>
+        <li>Querying multiple, diverse data sources in real-time</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Breath... Let's recap</h2>
+      <ul>
+        <li>Lot's of data due to technological capabilities and social paradigms</li>
+        <li>Not just size! Diversity, volume and inter-connectedness also count</li>
+        <li>Scale, speed, processing, querying and analysis</li>
+        <li>Challenges technological capabilities or business needs</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide shout">
+    <div>
+      <h2>Hadoop<br /><small>The Elephant in the Room</small></h2>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Everyone talks about Hadoop</h2>
+      <blockquote cite="https://dl.dropboxusercontent.com/u/58525/NY%20Haskell%20Meetup%20-%20Conquering%20Hadoop%20with%20Haskell.pdf">
+        <p>
+          Hadoop is a powerful platform for batch analysis of large volumes of both structured and unstructured data. <br/>
+          <small>From: Conquering Hadoop with Haskell</small>
+        </p>
+      </blockquote>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Hadoop explained</h2>
+      <p>Hadoop is a horizontally scalable, fault-tolerant, open-source file system and batch-analysis platform capable of processing large amounts of data.</p>
+      <ul>
+        <li>
+          <strong>HDFS</strong> - Hadoop File System
+        </li>
+        <li>
+          <strong>M/R</strong> - Hadoop Map-Reduce platform
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Hadoop explained</h2>
+      <p><strong>HDFS</strong> is an ever-growing file system. We can store lots and lots of data on it for later use.</p>
+      <p>HDFS is used as the underlying platform for other technologies like <em>Hadoop M/R</em>, <em>Apache Mahout</em> or <em>HBase</em>.</p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Hadoop explained</h2>
+      <p>Imagine we want to look at 30 days worth of access logs to identify site usage patterns at a volume of 30M log entries per day.</p>
+      <p><strong>Hadoop M/R</strong> is a platform that allows us to query HDFS data in parallel for the purpose of batch (offline) data processing and analysis.</p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Why is Hadoop so important?</h2>
+      <ul>
+        <li>Scalable and fault-tolerant</li>
+        <li>Handles massive amounts of data</li>
+        <li>Truly parallel processing</li>
+        <li>Data can be semi-structured or unstructured (schemaless)</li>
+        <li>Serves as basis for other technologies (Hbase, Mahout, Impala, Shark)</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Hadoop - Words of caution</h2>
+      <ul>
+        <li>Complex</li>
+        <li>Not for real-time</li>
+        <li>Choose a distribution (Cloudera, HW, MapR) for better interoperability</li>
+        <li>Requires trained DevOps for day-to-day operations</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Breath....</h2>
+      <p>
+        We demystified the term <em>Big Data</em> and glimpsed at <em>Hadoop</em>. Now What?
+      </p>
+      <p>How do I really get into the <em>Big Data</em> world?</p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>The world of big data</h2>
+      <ul>
+        <li>Batch &amp; Data Science</li>
+        <li>DBs</li>
+        <li>Real-Time</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide shout">
+    <div>
+      <h2>Batch Processing<br /><small>Hadoop M/R</small></h2>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Batch processing of large data sets</h2>
+      <p>
+        We collect data for the purpose of providing end-users with better experience in our business domain.
+        This means we have to constantly query our data and divine new insights and relevant information.
+      </p>
+      <p>
+        The problem is doing that in very large scales is a painful, slow challenge.
+      </p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Batch processing of large data sets</h2>
+      <p>
+        Hadoop gives us the basic tools for large data processing in the form of M/R.<br />
+        However, Hadoop M/R is pretty annoying to work with directly as it lacks a lot of relevant tools
+        for the job (statistical analysis, machine learning etc.)
+      </p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <figure class="full white">
+        <img width="1050" src="http://xiaochongzhang.me/blog/wp-content/uploads/2013/05/MapReduce_Work_Structure.png" />
+        <figcaption>
+          <p><small>Source: http://xiaochongzhang.me/blog/?p=338</small></p>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Hadoop querying and data science tools</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Tool</th>
+            <th>Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Hive</th>
+            <td>Write SQL-like M/R queries on top of Hadoop</td>
+          </tr>
+          <tr>
+            <th>Shark</th>
+            <td>Hive-compatible, distributed SQL query engine for Hadoop</td>
+          </tr>
+          <tr>
+            <th>Pig</th>
+            <td>Write scripted M/R queries on top of Hadoop</td>
+          </tr>
+          <tr>
+            <th>Impala</th>
+            <td>Real-time SQL-like queries of Hadoop</td>
+          </tr>
+          <tr>
+            <th>Mahout</th>
+            <td>Scalable machine-learning on top of Hadoop M/R</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>The gentle way in</h2>
+      <ul>
+        <li>Hive or Shark are a great place to start due to their SQL-like nature</li>
+        <li>Shark is faster than Hive - less frustration</li>
+        <li>You need some Hadoop data to work with (consider Avro)</li>
+        <li>Remember - it's SQL-like, not SQL</li>
+        <li>Start small, locally and grow to production later</li>
+        <li>Check out Apache Sqoop for moving processed Hadoop data to your DB</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide shout">
+    <div>
+      <h2>Databases<br /><small>In the big data world</small></h2>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Databases in the big data world</h2>
+      <p>
+        <strong>The Problem:</strong> Traditional RDBMS were not designed for storing, indexing and querying growing amounts and volumes of data.
+      </p>
+      <h3>The 3S Challenge:</h3>
+      <ul>
+        <li><strong>S</strong>ize - How much data is written and read</li>
+        <li><strong>S</strong>peed - How fast can we write and read data</li>
+        <li><strong>S</strong>cale - How easily can our DB scale to accommodate more data</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>The 3S Challenge</h2>
+      <p>There's no single, simple solution to the 3S challenge. Instead, solutions focus on making an informed sacrifice in one area in order to gain in another area.</p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>NoSQL and C.A.P.</h2>
+      <p>
+        <strong>NoSQL</strong> is a term referring to a family of DBMS that attempt to resolve the 3S challenge by sacrificing one of three areas:
+      </p>
+      <ul>
+        <li>
+          <strong>Consistency</strong> - All clients have the same view of data
+        </li>
+        <li>
+          <strong>Availability</strong> - Each client can always read and write
+        </li>
+        <li>
+          <strong>Partition Tolerance</strong> - System works despite physical network failures
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>NoSQL and C.A.P.</h2>
+      <ul>
+        <li>C.A.P. means you have to make an informed choice (and sacrifice)</li>
+        <li>No single perfect solution</li>
+        <li>Opt for mixed solutions per use-case</li>
+        <li>Remember we're talking about read/write volume, not just size</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide shout">
+    <div>
+      <h2>Confused?<br /><small>Let's take a breath and focus</small></h2>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <figure class="full white">
+        <img src="img/nosql-visual-guide.png" />
+        <figcaption>
+          <p>
+            <small>Source: http://blog.nahurst.com/visual-guide-to-nosql-systems</small>
+          </p>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>OK, so where do I go from here?</h2>
+      <ul>
+        <li>Identify your needs and limitations</li>
+        <li>Choose a few candidates</li>
+        <li>Research &amp; Prototype</li>
+        <li>Read about <em>NewSQL</em> - VoltDB, InfiniDB, MariaDB, HyperDex, FoundationDB <small>(omitted due to time constraints)</small>.
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide shout">
+    <div>
+      <h2>Real-Time<br /><small>Big Data Now!</small></h2>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Real-Time big data processing</h2>
+      <p>
+        Processing big data in real-time is about data volumes rather than just size. For example, given a rate of 100K ops/sec, how do I do the following in real-time?:
+      </p>
+      <ul>
+        <li>Find anomalies in a data stream (spam)</li>
+        <li>Group check-ins by geo</li>
+        <li>Identify trending pages / topics</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Hadoop isn't for real-time processing</h2>
+      <p>
+        When it comes to data processing and analysis, Hadoop's M/R framework is wonderful for batch (offline) processing.
+      </p>
+      <p>
+        However, processing, analysing and querying Hadoop data in real-time is quite difficult.
+      </p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Apache Storm and Apache Spark</h2>
+      <p>
+        Apache Storm and Apache Spark are two frameworks for large-scale, distributed data processing in real-time.
+      </p>
+      <p>
+        One could say that both Storm and Spark are for real-time data processing what is Hadoop M/R for batch data processing.
+      </p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Apache Storm - Highlights</h2>
+      <ul>
+        <li>Runs on the JVM (Clojure / Java mix)</li>
+        <li>Fully distributed and fault-tolerant</li>
+        <li>Highly-scalable and extremely fast</li>
+        <li>Interoperability with popular languages (Scala, Python etc.)</li>
+        <li>Mature and production ready</li>
+        <li>Hadoop interoperability via Storm-YARN</li>
+        <li>Stateless</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Apache Spark - Highlights</h2>
+      <ul>
+        <li>Fully distributed and extremely fast</li>
+        <li>Write applications in Java Scala and Python</li>
+        <li>Perfect for both batch and real-time</li>
+        <li>Combine Hadoop SQL (Shark), Machine Learning and Data streaming</li>
+        <li>Native Hadoop interoperability</li>
+        <li>HDFS, HBase, Cassandra, Flume as data sources</li>
+        <li>Stateful thanks to above</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Storm &amp; Spark - Use Cases</h2>
+      <ul>
+        <li>Continuous/Cyclic Computation</li>
+        <li>Real-time analytics</li>
+        <li>Machine Learning (eg. recommendations, personalisation)</li>
+        <li>Graph Processing (eg. social networks) - Only Spark</li>
+        <li>Data Warehouse ETL (Extract, Transform, Load)</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide shout">
+    <div>
+      <h2>Recap</h2>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Term</th>
+            <th>Purpose</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Big Data</th>
+            <td>Collective term for data-processing solutions at scale</td>
+          </tr>
+          <tr>
+            <th>Hadoop</th>
+            <td>Scalable file-system and batch processing platform</td>
+          </tr>
+          <tr>
+            <th>M/R</th>
+            <td>Parallel, batch data-processing algorithm</td>
+          </tr>
+          <tr>
+            <th>Batch Processing</th>
+            <td>Sifting and analysing data offline / in background</td>
+          </tr>
+          <tr>
+            <th>3S Challenge</th>
+            <td>Size, Speed, Scale of DBs</td>
+          </tr>
+          <tr>
+            <th>C.A.P</th>
+            <td>Consistency, Availability, Partition Tolerance</td>
+          </tr>
+          <tr>
+            <th>NoSQL</th>
+            <td>Family of DBMS that grew due to the 3S Challenge</td>
+          </tr>
+          <tr>
+            <th>NewSQL</th>
+            <td>Family of DBMS that provide ACID at scale</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Questions?</h2>
+      <h3>Thank You</h3>
+    </div>
+  </section>
+  <!--
+
+  <section class="slide">
+    <div>
+      <h2>C.A.P By Example</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Database</th>
+            <th>CAP</th>
+            <th>Data Model</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Riak</th>
+            <td>A/P</td>
+            <td>Key / Value</td>
+          </tr>
+          <tr>
+            <th>Cassandra</th>
+            <td>A/P</td>
+            <td>Column-Oriented Key/Value</td>
+          </tr>
+          <tr>
+            <th>HBase</th>
+            <td>C/P</td>
+            <td>Column-Oriented</td>
+          </tr>
+          <tr>
+            <th>MongoDB</th>
+            <td>C/P</td>
+            <td>Document-Oriented</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h3>Why do we need big data technologies?</h3>
+      <p>
+        Modern day applications generate huge amounts of diverse data.<br />
+        Traditional RDBMs were not designed to handle these amounts of data efficiently and quickly.
+      </p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h3>Why do we need big data technologies?</h3>
+      <p>
+        Many business rely on personalisation, insights or BI as part of their business model.<br />
+        Generating such information from huge amounts of data isn't trivial and traditional solution fall short.
+      </p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h3>But how big is "really big" ?</h3>
+      <ul>
+        <li>There isn't a "magic" number beyond which we're in the "big data realm"</li>
+        <li>Generally speaking, we're looking at numbers in the TB and beyond</li>
+        <li>Even for smaller volumes, big data technologies might be more suitable</li>
+      </ul>
+      <p>
+        <strong>Conclusion: </strong> don't be afraid to try something out even at smaller scale.
+      </p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h3>Divide and Conquer</h3>
+      <p>Big data technologies can be divided into the following families:</p>
+      <ul>
+        <li>Storage &amp; Querying</li>
+        <li>Analysis &amp; BI</li>
+        <li>Real-Time</li>
+        <li>DBs</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide shout center">
+    <div>
+      <h2>Hadoop<br /><small>The Big Data Storage Layer</small></h2>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <p>Hadoop is a <strong>scalable</strong>, <strong>distributed</strong> file-system that serves as the basis for several big data technologies.</p>
+      <p>Hadoop's appeal is its ability to allow storage and retrieval of huge amounts while being horizontally scalable and fault-tolerant.</p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h3>Hadoop at a glance</h3>
+      <ul>
+        <li>Written in Java</li>
+        <li>Runs on top of Linux/Unix</li>
+        <li>File-System via HDFS</li>
+        <li>Data querying via M/R (is everyone familiar with M/R?)</li>
+        <li>Production-ready (no need to worry about adoption)</li>
+        <li>Install via distribution (Cloudera, Horton Works)</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h3>When do we use Hadoop?</h3>
+      <ul>
+        <li>Store lots of data (say access log files)</li>
+        <li>Query / Analyse of stored data (Pig, Hive)</li>
+        <li>Basis for other techs. (HBase, Accumulo, Shark, Mahout)</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h3>Points to take home</h3>
+      <ul>
+        <li>Hadoop is complex - Many moving parts</li>
+        <li>Usually used for querying (M/R) not just storage (HDFS)</li>
+        <li>You can install locally and play with it easily</li>
+        <li>Locall install with Pig / Hive / Scalding might be a good place to start</li>
+        <li>Before moving to production choose a distribution</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide shout center">
+    <div>
+      <h2>Hadoop M/R<br /><small>Querying Hadoop Data</small></h2>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <p>
+        So, now that we have many TBs of data in Hadoop, how do we query that data?<br />
+        Suppose we're storing access logs, and want to find out how many people visited each page of our app
+      </p>
+      <p>We need a way to efficiently read log entries, extract the request path and count occurrences of each path.</p>
+    </div>
+  </section>
+  -->
+  <div class="progress"><div></div></div>
+  <script src="../shower/shower.min.js"></script>
+</body>
+</html>
