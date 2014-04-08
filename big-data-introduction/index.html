@@ -49,6 +49,11 @@
     .full figcaption p small{
       font-size: 12px;
     }
+    #qrcode{
+      position: absolute;
+      right:0;
+      bottom:10px;
+    }
   </style>
 </head>
 <body class="list" data-scroll="locked">
@@ -237,6 +242,18 @@
   </section>
   <section class="slide">
     <div>
+      <h2>How do we do this on Hadoop data?</h2>
+      <figure>
+        <p>
+          <img src="img/hive-select.png" /><br />
+          <img src="img/hive-join.png" />
+        </p>
+        <p><small>Source: https://cwiki.apache.org/confluence/display/Hive/Tutorial</small></p>
+      </figure>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
       <h2>Batch processing of large data sets</h2>
       <p>
         Hadoop gives us the basic tools for large data processing in the form of M/R.<br />
@@ -248,7 +265,7 @@
   <section class="slide">
     <div>
       <figure class="full white">
-        <img width="1050" src="http://xiaochongzhang.me/blog/wp-content/uploads/2013/05/MapReduce_Work_Structure.png" />
+        <img width="1050" src="img/MapReduce_Work_Structure.png" />
         <figcaption>
           <p><small>Source: http://xiaochongzhang.me/blog/?p=338</small></p>
         </figcaption>
@@ -437,7 +454,7 @@
         <li>Interoperability with popular languages (Scala, Python etc.)</li>
         <li>Mature and production ready</li>
         <li>Hadoop interoperability via Storm-YARN</li>
-        <li>Stateless</li>
+        <li>Stateless / Non-Persistent (Data brought to processors)</li>
       </ul>
     </div>
   </section>
@@ -451,7 +468,7 @@
         <li>Combine Hadoop SQL (Shark), Machine Learning and Data streaming</li>
         <li>Native Hadoop interoperability</li>
         <li>HDFS, HBase, Cassandra, Flume as data sources</li>
-        <li>Stateful thanks to above</li>
+        <li>Stateful / Persistent (Processors brought to data)</li>
       </ul>
     </div>
   </section>
@@ -491,12 +508,12 @@
             <td>Scalable file-system and batch processing platform</td>
           </tr>
           <tr>
-            <th>M/R</th>
-            <td>Parallel, batch data-processing algorithm</td>
-          </tr>
-          <tr>
             <th>Batch Processing</th>
             <td>Sifting and analysing data offline / in background</td>
+          </tr>
+          <tr>
+            <th>M/R</th>
+            <td>Parallel, batch data-processing algorithm</td>
           </tr>
           <tr>
             <th>3S Challenge</th>
@@ -528,6 +545,7 @@
         Feel free to drop my a line:<br />
         <strong>Email</strong>: zohar [AT] zohararad.com<br />
         <strong>Github</strong>: zohararad
+        <img src="img/qrcode.png" id="qrcode" />
       </p>
       <p>
         <strong>Thank You!</strong>
