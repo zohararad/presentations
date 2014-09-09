@@ -123,7 +123,7 @@
       <figure>
         <blockquote>
           <p>
-            I only do the front-end. I'll use some automation of pre-processing and possibly building and optimising.
+            I only do the front-end. I'll use some automation for pre-processing and possibly building and optimising.
             Once finished, I hand off the project to the client.
           </p>
         </blockquote>
@@ -229,7 +229,7 @@
           </tr>
           <tr>
             <th>Node.js</th>
-            <td>connect-assets</td>
+            <td>connect-assets, connect-mincer</td>
           </tr>
           <tr>
             <th>PHP</th>
@@ -275,12 +275,17 @@
       </table>
     </div>
   </section>
+  <section class="slide shout">
+    <div>
+      <h2>What about deployment?</h2>
+    </div>
+  </section>
   <section class="slide">
     <div>
       <h2>Deployment</h2>
       <p>Our deployment system needs to painlessly support:</p>
       <ul>
-        <li class="next">Asset Management</li>
+        <li class="next">Asset Management (CLI)</li>
         <li class="next">Rollbacks</li>
         <li class="next">Disaster Recovery</li>
         <li class="next">Restarts</li>
@@ -341,7 +346,7 @@
       <h2>Putting it all together</h2>
       <p>
         You should always prefer to use existing tools. Moreover, you should always prefer to combine backend
-        framework support (like connect-assets) with a solid deployment tool (like Fabric).
+        framework support (like connect-assets/mincer) with a solid deployment tool (like Fabric).
       </p>
       <p class="next">
         <em>But... in case you can't here's a detox plan.</em>
@@ -353,10 +358,10 @@
       <h2>Detox Plan</h2>
       <ol>
         <li>Choose a solid, suitable deployment tool</li>
-        <li>Choose one automation tool and suitable set of plugins</li>
-        <li>Do not neglect cache-busting &amp; GZipping. Do it properly!</li>
-        <li>If in doubt, copy logic from Sprockets / connect-assets</li>
-        <li>Use configuration and ENV vars instead of hard-coding stuff</li>
+        <li class="next">Choose one automation tool and suitable set of plugins</li>
+        <li class="next">Do not neglect cache-busting &amp; GZipping. Do it properly!</li>
+        <li class="next">If in doubt, copy logic from Sprockets / connect-mincer / connect-assets</li>
+        <li class="next">Use configuration and ENV vars instead of hard-coding stuff</li>
       </ol>
     </div>
   </section>
@@ -365,9 +370,9 @@
       <h2>Detox Plan</h2>
       <ol>
         <li>Make sure build tasks are runnable from CLI</li>
-        <li>Use the smallest number of moving parts to avoid potential breakage</li>
-        <li>As above, try to avoid mixing external dependencies (like Java)</li>
-        <li>Build assets on the target server. Do not commit builds to SCM</li>
+        <li class="next">Use the smallest number of moving parts to avoid potential breakage</li>
+        <li class="next">As above, try to avoid mixing external dependencies (like Java for YUI)</li>
+        <li class="next">Build assets on the target server. Do not commit builds to SCM</li>
       </ol>
     </div>
   </section>
@@ -375,9 +380,11 @@
     <div>
       <h2>Pipeline Flow</h2>
       <p>
-        Pre-compile / Pre-process &rarr; Concatenate &amp; Minify  &rarr; Save &rarr;
-        MD5 file content &rarr; Copy to files with MD5 content in file-name &rarr; Create Cache Manifest &rarr;
-        Update templates with new file-names &rarr; GZip &rarr; Upload to CDN
+        Pre-compile / Pre-process &rarr; Concatenate &amp; Minify  &rarr; Save &rarr;<br />
+        MD5 file content &rarr; Add MD5 value to file-name &rarr;<br />
+        Create Cache Manifest &rarr;
+        Update templates with new file-names &rarr;<br />
+        GZip &rarr; Upload to CDN
       </p>
     </div>
   </section>
@@ -385,338 +392,38 @@
     <div>
       <h2>Pipeline Flow</h2>
       <p>
-        If you're a real hero, run MD5 to CDN steps on images too (use MD5 for Base64 version for content diffing)
+        If you're a real hero, run MD5 to CDN steps on images too (use MD5 of Base64 value for content diffing)
       </p>
     </div>
   </section>
   <section class="slide">
     <div>
-      <h2>Some Opinionated Choices</h2>
-      <table>
-        <tbody>
-          <tr>
-            <th>Deployment</th>
-            <td>Mina / Fabric</td>
-          </tr>
-          <tr>
-            <th>Automation</th>
-            <td>Gulp / Rake / Make</td>
-          </tr>
-          <tr>
-            <th>CDN</th>
-            <td>Fog (Ruby)</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-  <!--
-  <section class="slide">
-    <div>
-      <h2>Scenario #1 - RequireJS &amp; Static HTML</h2>
+      <h2>Closing Thoughts</h2>
       <ul>
-        <li class="next">Static HTML files (i.e. no server-side templating).</li>
-        <li class="next">Optionally using a template-engine that compiles to static HTML</li>
-        <li class="next">RequireJS used for dependency management, inclusion ordering</li>
-        <li class="next">r.js used for optimising (concat &amp; minify)</li>
-        <li class="next"><strong>Typical Cases:</strong> SPAs, Landing Pages, Hybrid Mobile</li>
-      </ul>
-    </div>
-  </section>
-  <section class="slide">
-    <div>
-      <h2>Scenario #1 - Potential Breakage</h2>
-      <ul>
-        <li class="next">Incomplete Flow - No cache-busting, template management</li>
-        <li class="next">No built-in support for pre-compilation</li>
-        <li class="next">No built-in support for deployment</li>
-        <li class="next">Above requires additional tools (Grunt, Gulp etc.)</li>
-        <li class="next">Above means no standard solution (confusion, code reuse, re-inventing wheel)</li>
-      </ul>
-    </div>
-  </section>
-  <section class="slide">
-    <div>
-      <h2>Scenario #1 - Possible Solution</h2>
-      <ul>
-        <li class="next">Choose one automation tool</li>
-        <li class="next">Add pre-processing &amp; template compiling tasks</li>
-        <li class="next">Use r.js for concatenation, minification</li>
-        <li class="next">Add cache-busting support (manifest &amp; template mods.)</li>
-        <li class="next">Optionally add GZipping</li>
-        <li class="next">Optionally add image optimising</li>
-        <li class="next">Optionally add CNDizing</li>
+        <li>Look at things holistically</li>
+        <li>Use existing solutions</li>
+        <li>Get to know your Web server (hopefully Nginx or comparable)</li>
+        <li>Treat asset management as a first-class requirement, not a lowly after-thought</li>
+        <li>Choose technology that supports above</li>
       </ul>
     </div>
   </section>
   <section class="slide shout">
     <div>
-      <h2>Crap!<br /><small>That's a bit complicated</small></h2>
+      <h2>Thank You!</h2>
     </div>
   </section>
   <section class="slide">
-    <div>
-      <h2>r.js and cache-busting with Gulp</h2>
-      <pre>
-        <code>var gulp = <mark>require('gulp')</mark>,</code>
-        <code>    plugins = <mark>require('gulp-load-plugins')()</mark>;</code>
-        <code>&nbsp;</code>
-        <code>gulp.task(<mark>'build-js'</mark>, function() {</code>
-        <code>  gulp.src('./src/js/*.js')</code>
-        <code>    .pipe(plugins.rjs({baseUrl: '/'}))  <mark class="comment">//r.js</mark></code>
-        <code>    .pipe(plugins.rev())                <mark class="comment">//create MD5 hash of content</mark></code>
-        <code>    .pipe(gulp.dest('./public/js'))     <mark class="comment">//write to public</mark></code>
-        <code>    .pipe(plugins.rev.manifest())       <mark class="comment">//create cache manifest</mark></code>
-        <code>    .pipe(gulp.dest'./public/js'));     <mark class="comment">//write to public</mark></code>
-        <code>});</code>
-      </pre>
-    </div>
-  </section>
-  <section class="slide">
-    <div>
-      <h2>Scenario #2 - RequireJS &amp; Dynamic Backend</h2>
-      <ul>
-        <li class="next">Server-side framework (templating, asset-pipeline support)</li>
-        <li class="next">RequireJS used for dependency management, inclusion ordering</li>
-        <li class="next">r.js used for optimising (concat &amp; minify)</li>
-        <li class="next"><strong>Typical Cases:</strong> SPAs, Dynamic Sites, Stubborn FEDs</li>
-      </ul>
-    </div>
-  </section>
-  <section class="slide">
-    <div>
-      <h2>Scenario #2 - Potential Breakage</h2>
-      <ul>
-        <li class="next">Server-side framework (templating, asset-pipeline support)</li>
-      </ul>
-    </div>
-  </section>
-  -->
-  <!--
-  <section class="slide">
-    <div>
-      <h2>Who Manages Assets?</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>App Type</th>
-            <th>Responsibility for Asset Management</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Dynamic</td>
-            <td>Server (eg. Sprockets)</td>
-          </tr>
-          <tr>
-            <td>Static / Mobile Hybrid</td>
-            <td>Client (eg. RequireJS) + Developer</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-  <section class="slide">
-    <div>
-      <h2>Why is Asset Management so Complicated?</h2>
-      <ul>
-        <li>No clear chain of responsibility between client and server</li>
-        <li>Skewed chain of responsibility (let the browser do it)</li>
-        <li>No agreed-upon requirements</li>
-        <li>Lazy developers (I only do front-end)</li>
-        <li>Skewed division of dev. responsibilities (they only do front-end)</li>
-        <li>Too many tools to choose from</li>
-        <li>Not part of tech. stack choice considerations (usually)</li>
-      </ul>
-    </div>
-  </section>
-  <section class="slide">
-    <div>
-      <h2>Down the Rabbit Hole - Static Apps</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Flow</th>
-            <th>Tasks</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Naive</td>
-            <td>Watch, Concat, Minify</td>
-          </tr>
-          <tr>
-            <td>RequireJS</td>
-            <td>Watch, Build (r.js)</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Cache-Buster</td>
-            <td>Above + Revision, Replace template includes</td>
-          </tr>
-          <tr>
-            <td>Cache-Buster &amp; GZip</td>
-            <td>Cache-Buster + GZip</td>
-          </tr>
-          <tr>
-            <td>CDN</td>
-            <td>Above + CDN Upload, Replace template includes</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-  <section class="slide">
-    <div>
-      <pre>
-        <code>
-var gulp = require('gulp'),
-    plugins = require('gulp-load-plugins')();
-
-gulp.task('build-js', function() {
-  gulp.src('./src/js/*.js')
-    .pipe(plugins.uglify())           //minify
-    .pipe(plugins.concat('app.js'))   //concat
-    .pipe(plugins.rev())              //create MD5 hash of content
-    .pipe(gulp.dest('./public/js'))   //write to public
-    .pipe(plugins.rev.manifest())     //create cache manifest
-    .pipe(gulp.dest('./public/js'));  //write to public
-});
-        </code>
-      </pre>
-    </div>
-  </section>
-  <section class="slide shout">
-    <div>
-      <h2>Ok. Now What?</h2>
-    </div>
-  </section>
-  <section class="slide">
-    <div>
-      <h2>Through the Looking Glass - Static Apps</h2>
-      <ul>
-        <li>Choose your automation tool (Gulp, Grunt, Rake, Make, etc.)</li>
-        <li>Stick with it! Don't mix</li>
-        <li>Choose your flow &amp; tasks</li>
-        <li>Integrate into dev. and deployment flows</li>
-        <li>Be consistent and predictable, so others can work with you</li>
-      </ul>
-    </div>
-  </section>
-  <section class="slide">
-    <div>
-      <figure>
-        <img src="img/how-to-draw-the-cheshire-cat-step-7_1_000000009874_5.jpg" width="90%" />
+      <figure class="place c c">
+        <p>
+          <img src="http://qrfree.kaywa.com/?l=1&s=8&d=http%3A%2F%2Fzohararad.github.io%2Fpresentations%2Fasset-management-unbroken%2F" alt="QRCode" />
+        </p>
         <figcaption class="center">
-          <small>
-            <strong>Moving on swiftly</strong><br />
-            source: http://wolcartoon.com/
-          </small>
+          <h3>Scan Me...</h3>
         </figcaption>
       </figure>
     </div>
   </section>
-  <section class="slide">
-    <div>
-      <h2>Let's talk about dynamic Web Apps</h2>
-      <p>A Web App should be considered dynamic if</p>
-      <ol>
-        <li>You own the backend</li>
-        <li>You use it to serve more than HTML, CSS, JS, Images</li>
-        <li>Code is deployed to a Web server (i.e. not mobile apps)</li>
-      </ol>
-    </div>
-  </section>
-  <section class="slide">
-    <div>
-      <h2>Let's talk about dynamic Web Apps</h2>
-      <p>By that measure, we assume that</p>
-      <ul>
-        <li>You're familiar with your template engine *</li>
-        <li>You're familiar with your backend framework *</li>
-        <li>SPAs are dynamic (usually)</li>
-      </ul>
-      <p>
-        <small>* If not, go stand in the corner and think long and hard</small>
-      </p>
-    </div>
-  </section>
-  <section class="slide">
-    <div>
-      <h2>Let's ask some questions then</h2>
-      <p>You already have scripting capabilities on the backend. Why not use them for asset management?</p>
-    </div>
-  </section>
-  <section class="slide">
-    <div>
-      <h2>Let's ask some questions then</h2>
-      <p>You already chose a backend framework. Does it have asset management built-in? Why not?</p>
-    </div>
-  </section>
-  <section class="slide">
-    <div>
-      <h2>Let's ask some questions then</h2>
-      <p>Should you really spend (waste) your time writing your own asset management flow?</p>
-      <p>What makes your app special or different that you need to do so?</p>
-    </div>
-  </section>
-  <section class="slide">
-    <div>
-      <h2>Let's ask some questions then</h2>
-      <p>What happens on the next project? Are you going to rewrite / copy your asset management logic or can you reuse somehow?</p>
-    </div>
-  </section>
-  <section class="slide">
-    <div>
-      <h2>Let's ask some questions then</h2>
-      <p>Please tell me why the hell are you using RequireJS?</p>
-    </div>
-  </section>
-  <section class="slide">
-    <div>
-      <figure class="center">
-        <img src="img/eureka.jpg" height="450" />
-        <figcaption>
-          <small>Source: http://napavalleyregister.com/</small>
-        </figcaption>
-      </figure>
-    </div>
-  </section>
-  <section class="slide">
-    <div>
-      <h2>The Ideal Solution</h2>
-      <ul>
-        <li>Web framework integration</li>
-        <li>Pre-Processor support</li>
-        <li>Inclusion ordering support (dependency management)</li>
-        <li>Concatenation</li>
-        <li>Minification</li>
-        <li>Cache-Busting</li>
-        <li>GZipping</li>
-        <li>CLI / deployment support</li>
-      </ul>
-    </div>
-  </section>
-  <section class="slide">
-    <div>
-      <h2>Real-World solutions</h2>
-      <ul>
-        <li>
-          <strong>Ruby</strong> - Sprockets, Jammit
-        </li>
-        <li>
-          <strong>Node.js</strong> - connect-assets
-        </li>
-        <li>
-          <strong>PHP</strong> - Sprockets-PHP, Bonfire Assets (no cache busting)
-        </li>
-        <li>
-          <strong>Python</strong> - webassets
-        </li>
-      </ul>
-    </div>
-  </section>
-  -->
   <div class="progress"><div></div></div>
   <script src="../shower/shower.min.js"></script>
   <script>
