@@ -1,0 +1,396 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <title>Outgrowing MongoDB</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Outgrowing MongoDB">
+  <meta name="author" content="Zohar Arad">
+  <meta name="viewport" content="width=792, user-scalable=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link rel="stylesheet" href="../shower/themes/ribbon/styles/screen.css">
+  <style>
+    .slide h3{
+      font-weight: bold;
+      font-size: 32px;
+    }
+
+    .shout h3 {
+      font-size: 60px;
+      font-weight: bold;
+      line-height: 1.4;
+      margin-top: 80px;
+    }
+
+    .shout h2 small {
+      font-size: 40px;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    figcaption, pre{
+      font-size: 18px;
+      line-height: inherit;
+    }
+
+    small {
+      font-size: 16px;
+    }
+
+    .slide pre code {
+      line-height: inherit;
+    }
+
+    .slide.cover footer{
+      position: absolute;
+      right:0;
+      bottom:0;
+      left:0;
+      background-color: rgba(255,255,255,0.9);
+      display: block;
+      padding: 15px 0;
+      line-height: 1.2;
+    }
+
+    .slide.cover footer small{
+      font-size: 14px;
+    }
+
+    .slide.cover.centered img{
+      height: auto;
+      -webkit-transform:translate3d(-50%, -50%, 0);
+      transform:translate3d(-50%, -50%, 0);
+      left: 50%;
+      top: 50%;
+    }
+
+    .slide p {
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body class="list" data-scroll="locked">
+  <header class="caption">
+    <h1>Outgrowing MongoDB</h1>
+    <p>Zohar Arad. &copy; 2015</p>
+  </header>
+  <section class="slide">
+    <div>
+      <h2>About Me</h2>
+      <ul>
+        <li>Full-Stack Web Developer (Ruby, Javascript)</li>
+        <li>Lead-Tech at Quicklizard Ltd.</li>
+        <li>Freelance consultant &amp; trainer</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Outgrowing MongoDB</h2>
+      <p>This isn't a criticism of MongoDB, or a DB competition. MongoDB is great and you should keep using it!</p>
+      <p>But... sometimes your use-case isn't a perfect fit for MongoDB, and you might be able to employ more modern DBs for your cause.</p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Outgrowing MongoDB</h2>
+      <p>We're going to look at a few new NoSQL databases and their use-cases.</p>
+      <p>We're not going to compare performance, just features (well mostly).</p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>When not to Mongo?</h2>
+      <ul>
+        <li>High write load</li>
+        <li>Intensive use of M/R (single threadness etc.)</li>
+        <li>Highly join-oriented Business-Logic</li>
+        <li>ACID is a must</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Before we start</h2>
+      <p>
+        When I use the term "Easy Admin / Scaling", I mean it in a subjective way, hinting at the expected complexity of
+        adding more capacity to the cluster by adding nodes, and administering the cluster as a whole.
+      </p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>ArangoDB</h2>
+      <p>ArangoDB is perhaps MongoDBs closest cousin, sharing a very similar feature set and aiming at some of the same use-cases.</p>
+      <p>ArangoDB uses its own query language called AQL which tries to be closer to SQL</p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>ArangoDB - Notable Features</h2>
+      <ul>
+        <li>Supports multi-model storage - K/V, Document, Graph</li>
+        <li>Sharding and replication</li>
+        <li>Transactions, joins and ACID</li>
+        <li>Multi-threaded (MongoDB is single-threaded)</li>
+        <li>Foxx thin application layer for REST APIs</li>
+        <li>Admin UI</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>ArangoDB - Pitfalls</h2>
+      <ul>
+        <li>Not all nodes are created equal (same as MongoDB - complicates admin)</li>
+        <li>No transactions in sharded collections</li>
+        <li>Not enough examples of cluster deployment scenarios</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Choosing ArangoDB</h2>
+      <ul>
+        <li>When you want to mix graph and document data models</li>
+        <li>When you need to escape the single-threaded, locking of MongoDB</li>
+        <li>When you want a thin REST API layer to serve your data</li>
+        <li>When you need joins, transactions or ACID compliance</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>RethinkDB</h2>
+      <p>
+        RethinkDB is a distributed Document DB with parallel query execution and easy admin. RethinkDB offers a programmatic
+        query language called RQL that is developer-oriented rather than DBA oriented.
+      </p>
+      <p>
+        RethinkDB is very transparent in it's release process and shares information about performance degradation and
+        feature implementation road-map, making it easy for us to decide if and when to adopt or upgrade.
+      </p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>RethinkDB - Notable Features</h2>
+      <ul>
+        <li>Easy admin (nodes are equal)</li>
+        <li>Joins, sub-queries, transactions</li>
+        <li>Isolated execution pool &amp; distributed queries</li>
+        <li>Lock-free architecture</li>
+        <li>Admin UI</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>RethinkDB - Pitfalls</h2>
+      <ul>
+        <li>No automatic primary re-election</li>
+        <li>Query language takes time to get used to</li>
+        <li>Tries to always be consistent, at the cost of write availability</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Choosing RethinkDB</h2>
+      <ul>
+        <li>When you need an easier deployment setup (i.e. DevOps resources are scarce)</li>
+        <li>When you need to escape the single-threaded, locking of MongoDB</li>
+        <li>When you need joins or transactions</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>ArangoDB or RethinkDB?</h2>
+      <p>
+        ArangoDB seems to be a better fit for a multi-model use-case (graphs, K/V, document) or when you want to bind your API
+        layer to your DB (Foxx).
+      </p>
+      <p>
+        RethinkDB's strongest feature IMHO is easy admin and scaling and would be most suitable when you don't need to worry about the complexities of your cluster.
+      </p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>FoundationDB</h2>
+      <p>
+        FoundationDB is a scalable, fault-tolerant, transactional and ACID compliant Key/Value store.
+      </p>
+      <p>
+        One of FoudnationDB's most interesting concepts is the separation of the storage layer from the data-model layer, which
+        makes it extremely flexible, without sacrificing performance and scalability.
+      </p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>FoundationDB - Notable Features</h2>
+      <ul>
+        <li>All nodes are created equal (nearly - See SQL Layer) - Easy horizontal scalability &amp; admin</li>
+        <li>Can be used as K/V, ANSI SQL, or with custom data-model layer</li>
+        <li>High read/write throughput</li>
+        <li>Highly-available, Transactional &amp; ACID compliant</li>
+        <li>Sorted keys (same as HBase)</li>
+        <li>Parallel query execution in SQL Layer</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>FoundationDB - Pitfalls</h2>
+      <ul>
+        <li>Transactions are limited to 5sec. execution time</li>
+        <li>Single thread per query</li>
+        <li>1MB limit of total keys and values size per write</li>
+        <li>Slow machines can affect entire cluster throughput</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>FoundationDB - Some Thoughts</h2>
+      <ul>
+        <li>Useful for K/V &amp; SQL scenarios (think sessions + app data on same DB)</li>
+        <li>5sec. transaction execution limit places more responsibility on developers</li>
+        <li>As above can help improve app/data design</li>
+        <li>Less suitable for analytics, batch use-cases</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>ElasticSearch</h2>
+      <p>ElasticSearch is a scalable, fault-tolerant, distributed search-engine and document store</p>
+      <p>
+        One of ElasticSearch's most compelling features is its aggregation framework which makes it easy to generate real-time analytics from semi-structured data.
+      </p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>ElasticSearch - Notable Features</h2>
+      <ul>
+        <li>All nodes are created equal (nearly - depends on cluster modes) - Simplifies admin &amp; scaling</li>
+        <li>Data model is based on JSON documents</li>
+        <li>REST API for all operations - Easy integration directly from browser</li>
+        <li>Batch operation fo large / long queries (not M/R)</li>
+        <li>Full-text search baked in</li>
+        <li>High read/write throughput</li>
+        <li>Data Aggregation</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>ElasticSearch - Pitfalls</h2>
+      <ul>
+        <li>Schema changes require re-indexing or recreation of indices</li>
+        <li>Query API takes time to get used to (not similar to current query languages)</li>
+        <li>Re-sharding requires index recreation</li>
+        <li>Schema design can be complicated / requires attention</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>ElasticSearch - Some Thoughts</h2>
+      <ul>
+        <li>Easy admin and scaling - Great when you need a scalable document store</li>
+        <li>Aggregation framework provides excellent entry point for real-time analytical data</li>
+        <li>REST API means you can use directly from browser (Kibana does it)</li>
+        <li>Extremely large index sizes might affect performance (AFAIK - not verified)</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>HyperDex</h2>
+      <p>
+        HyperDex is a distributed, fault-tolerant K/V and document store, offering ACID compliance, strong-consistency and transactions.
+      </p>
+      <p>
+        One of HyperDex's most notable features is it's data-sharding algorithm, which places data in the cluster while retaining its locality, which aids both
+        ACID compliance and search speed.
+      </p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>HyperDex - Notable Features</h2>
+      <ul>
+        <li>All nodes are created equal (nearly - coordinator / daemon) - Easy admin</li>
+        <li>K/V with rich data types - Strings, Numbers, Lists, Maps, Sets</li>
+        <li>Rich atomic operations of values (eg. add, sub, push, intersect)</li>
+        <li>Document storage allows to store JSON objects</li>
+        <li>Indexing of document values</li>
+        <li>Sync / Async operations</li>
+        <li>Mutli-key transactions in commercial version</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>HyperDex - Pitfalls</h2>
+      <ul>
+        <li>Async operations are concurrent and not ordered</li>
+        <li>Fault-tolerance depends on configurable number of coordinators &amp; daemons</li>
+        <li>Support for some clients require manual build from source</li>
+        <li>Limited querying due to K/V nature</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>HyperDex - Some Thoughts</h2>
+      <ul>
+        <li>Great for mixed K/V &amp; Document store use cases (eg. session &amp; app data)</li>
+        <li>K/V feature set is similar to Redis, but has added benefit of scalability (despite not being in-memory)</li>
+        <li>Limited query API means use-cases are mostly in the K/V domain, but with added value of document-indexing</li>
+        <li>Documentation is a bit thin - Might take a bit more time to integrate</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Closing Thoughts</h2>
+      <ul>
+        <li>Choosing a DB is a matter of requirements coupled with feature-set</li>
+        <li>Be cautious of a one-size-fit-all approach</li>
+        <li>Don't be afraid to use more than one (two, three) DBs in your app - per use-case</li>
+        <li>Don't be fooled by performance benchmarks</li>
+        <li>Prototype before you implement (try before you buy)</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>If we have time</h2>
+      <p><strong>Replacing MongoDB with ElasticSearch</strong> - The story of how Quiclizard replaced MongoDB &amp; HBase with ElasticSearch</p>
+    </div>
+  </section>
+  <section class="slide shout">
+    <div>
+      <h2>Thank You!<br /><small>Quesions?</small></h2>
+    </div>
+  </section>
+  <div class="progress"><div></div></div>
+  <script src="../shower/shower.min.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-49621437-1', 'zohararad.github.io');
+    ga('send', 'pageview');
+
+  </script>
+</body>
+</html>
