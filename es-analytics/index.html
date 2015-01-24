@@ -1,0 +1,429 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <title>Outgrowing MongoDB</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Real-Time Analytics with Elastic Search" />
+  <meta name="author" content="Zohar Arad" />
+  <meta name="viewport" content="width=792, user-scalable=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <link rel="stylesheet" href="../shower/themes/ribbon/styles/screen.css" />
+  <style>
+    .slide h3{
+      font-weight: bold;
+      font-size: 32px;
+    }
+
+    .shout h3 {
+      font-size: 60px;
+      font-weight: bold;
+      line-height: 1.4;
+      margin-top: 80px;
+    }
+
+    .shout h2 small {
+      font-size: 40px;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    figcaption, pre{
+      font-size: 18px;
+      line-height: inherit;
+    }
+
+    small {
+      font-size: 16px;
+    }
+
+    .slide pre code {
+      line-height: inherit;
+    }
+
+    .slide.cover footer{
+      position: absolute;
+      right:0;
+      bottom:0;
+      left:0;
+      background-color: rgba(255,255,255,0.9);
+      display: block;
+      padding: 15px 0;
+      line-height: 1.2;
+    }
+
+    .slide.cover footer small{
+      font-size: 14px;
+    }
+
+    .slide.cover.centered img{
+      height: auto;
+      -webkit-transform:translate3d(-50%, -50%, 0);
+      transform:translate3d(-50%, -50%, 0);
+      left: 50%;
+      top: 50%;
+    }
+
+    .slide p {
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body class="list" data-scroll="locked">
+  <header class="caption">
+    <h1>Real-Time Analytics with Elastic Search</h1>
+    <p>Zohar Arad. &copy; 2015</p>
+  </header>
+  <section class="slide">
+    <div>
+      <h2>About Me</h2>
+      <ul>
+        <li>Full-Stack Web Developer (Ruby, Javascript)</li>
+        <li>Lead-Tech at Quicklizard Ltd.</li>
+        <li>Freelance consultant &amp; trainer</li>
+        <li>Find me - @zohararad (Twitter / Github)</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>About Quicklizard</h2>
+      <h3>Real-Time Pricing Intelligence and Revenue Optimisation</h3>
+      <ul>
+        <li>Click-Stream analytics</li>
+        <li>Pricing Intelligence (Competitor / Performance based)</li>
+        <li>Real-Time reaction to market changes</li>
+        <li>Real-Time click-stream BI</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Quicklizard wants to know things like:</h2>
+      <ul>
+        <li>Product activity (views, conversions, revenue)</li>
+        <li>Product Group activity (views, conversions, revenue)</li>
+        <li>Trending Product Groups</li>
+        <li>Product Activity feed (price recommendations, competitor price changes)</li>
+        <li>Products with potential revenue</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Analytics with HBase</h2>
+      <p>
+        Initially we used HBase as our real-time analytics data platform.
+      </p>
+      <ul>
+        <li>Robust &amp; Scalable</li>
+        <li>Extremely high write throughput</li>
+        <li>Great for both batch and real-time</li>
+        <li>Interoperability with other Big Data platforms</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide shout">
+    <div>
+      <h2>But...</h2>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>HBase has some disadvantages</h2>
+      <ul>
+        <li>Requires constant maintenance</li>
+        <li>Resource hungry (in the extreme)</li>
+        <li>Harder to use for complex queries</li>
+        <li>Data needs to be written more than once to support different queries</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Moving Forwards</h2>
+      <p>
+        After some trial and error (including Kiji and Phoenix), we settled for using Elastic Search
+        to drive our real-time data, and Spark/S3 for batch processing.
+      </p>
+    </div>
+  </section>
+  <section class="slide cover h">
+    <img src="./images/quicklizard-servers.svg" />
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Data Ingestion</h2>
+      <p>
+        Data is ingested by Elastic Search using the Elastic Search RabbitMQ river with a custom plugin
+        that transforms incoming data into ES documents and passes them into ES's bulk API
+      </p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Example Input</h2>
+      <pre>
+        <code>
+{
+  "uid":"44aa555ddbbcce36",
+  "dimension":"product",
+  "client_key": "some_client",
+  "counter_name": "views",
+  "meta": { ... }
+}
+        </code>
+      </pre>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Example Output</h2>
+      <pre>
+        <code>
+{"update":{"_index":"events-production-2015-01-23","_type":"exposure",
+ "_id":"fd35b9758e1880cce370b2d55c471517"}}
+
+{"doc":{"timestamp":"2015-01-23T06:00:00.000Z","uid":"44aa555ddbbcce36",
+ "dimension":"product","client_key":"some_client"}, "doc_as_upsert" : true}
+        </code>
+      </pre>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Example Output</h2>
+      <pre>
+        <code>
+{"update":{"_index":"events-production-2015-01-23","_type":"exposure",
+ "_id":"fd35b9758e1880cce370b2d55c471517"}}
+
+{"script":"if (!ctx._source.containsKey(\"views\")){ctx._source.views = 0.0}"}
+
+{"update":{"_index":"events-production-2015-01-23","_type":"exposure",
+ "_id":"fd35b9758e1880cce370b2d55c471517"}}
+
+{"script":"ctx._source.views += count","params":{"count":1.00},
+ "upsert":{"views":1}}
+        </code>
+      </pre>
+    </div>
+  </section>
+  <section class="slide cover w">
+    <figure>
+      <img src="http://kindawarped.com/wp-content/uploads/Cat3-1200x750.jpg">
+      <figcaption style="position:absolute;right:0;top:0;left:0;background: rgba(255,255,255,0.8); text-align: center">
+        <small style="font-size: 12px;">Source: http://kindawarped.com/?p=5024</small>
+      </figcaption>
+    </figure>
+
+  </section>
+  <section class="slide">
+    <div>
+      <h2>What just happened here?</h2>
+      <ul>
+        <li>Upsert a document with exposure basic details</li>
+        <li>Use inline-script to create a counter if it doesn't exist</li>
+        <li>Use inline-script to increment counter</li>
+        <li>Accumulate metric counters on a per-hour basis</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>And now we have</h2>
+      <pre>
+        <code>
+{"timestamp":"2015-01-23T06:00:00.000Z","uid":"44aa555ddbbcce36",
+ "dimension":"product","client_key":"some_client",
+"views":1.00,"conversions":1.00,"revenue": 10.00}</code>
+      </pre>
+      <p>Which is basically an accumulation of metrics per entity on an hourly basis</p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Which means we can ask Elastic Search</h2>
+      <ul>
+        <li>Activity for client C in time range</li>
+        <li>Activity for product X in time range</li>
+        <li>Activity for product group X in time range</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Data Aggregation</h2>
+      <p>
+        Elastic Search has an amazing aggregation framework for performing all kinds of aggregative operations on data (sum, count
+        averages, histogram).
+      </p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Example Query</h2>
+      <pre style="margin-top:-30px;">
+        <code>
+"query":{
+  "filtered":{
+    "query":{
+      "bool":{
+        "must":[
+          {"match":{"client_key":"some_client"}},
+          {"match":{"dimension":"product"}}
+        ]
+      }
+    },
+    ....
+  }
+}
+        </code>
+      </pre>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Example Query</h2>
+      <pre style="margin-top:-30px;">
+        <code>
+"query":{
+  "filtered":{
+    ....
+    "filter":{
+      "bool":{
+        "must":[
+          {"range":{
+            "timestamp":{
+              "gte":"2015-01-01T00:00:00.000Z","lte":"2015-01-01T23:00:00.000Z"
+            }
+          }
+        }]
+      }
+    }
+  }
+}
+        </code>
+      </pre>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Example Query - Aggregation</h2>
+      <pre style="margin-top:-30px;">
+        <code>
+"aggs":{
+  "views":{
+    "sum":{ "field":"views"}
+  },
+  "conversions":{
+    "sum":{ "field":"conversions"}
+  },
+  "revenue":{
+    "sum":{"field":"revenue"}
+  }
+}
+        </code>
+      </pre>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Aggregation Concepts</h2>
+      <ul>
+        <li>Design your query</li>
+        <li>Filter query results rather than limiting queried data (filter cache, Lucene limits)</li>
+        <li>Decide on aggregation type (count, sum, average, histogram etc.)</li>
+        <li>Optionally filter aggregated results further</li>
+        <li>Rinse and repeat</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Index Management</h2>
+      <p>
+        Keeping all our data in a single index might degrade performance over time and make maintenance harder (re-indexing, re-mapping).
+      </p>
+      <p>
+        Instead, we can use an index-per-day and alias each daily index to a common index name. We can setup and auto-create these
+        indices and their aliases using a template.
+      </p>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <pre>
+        <code>
+curl -XPUT "localhost:9200/_template/events" -d '{
+  "template": "events-*",
+  "order":    1,
+  "settings": {
+    "number_of_shards": 1, "number_of_replicas": 1
+  },
+  "aliases": {
+    "impressions": {
+      "filter" : { "type" : { "value" : "impression" } }
+    }
+  }
+}'
+        </code>
+      </pre>
+    </div>
+  </section>
+  <section class="slide cover h">
+    <img src="./images/index-management.svg" />
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Index Management</h2>
+      <ul>
+        <li>Store different documents in the same daily index</li>
+        <li>Each type of document is given an ElasticSearch <code>_type</code> value</li>
+        <li>Alias daily index to a common alias filtering by <code>_type</code></li>
+        <li>Use a template for automatic index creation and aliasing</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Recap</h2>
+      <ul>
+        <li>Data is ingested in bulk, using a River (choose your own)</li>
+        <li>We use a custom-script to increment counters on a per-hour time-frame</li>
+        <li>Indices are created on a daily basis and aliased by document <code>_type</code></li>
+        <li>We query documents, filter by desired criteria and then aggregate</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide">
+    <div>
+      <h2>Pitfalls</h2>
+      <ul>
+        <li>Index mapping is pretty rigid - Re-mapping requires index recreation</li>
+        <li>Design index mapping manually and feed into ES, rather than letting it create automatically</li>
+        <li>ES isn't designed for long-running queries or large data-sets. Use scroll API when needed</li>
+        <li>Take advantage of filters since they're cacheable - Prefer wide queries with filters</li>
+      </ul>
+    </div>
+  </section>
+  <section class="slide shout">
+    <div>
+      <h2>Thank You!<br /><small>Questions?</small></h2>
+    </div>
+  </section>
+  <div class="progress"><div></div></div>
+  <script src="../shower/shower.min.js"></script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-49621437-1', 'zohararad.github.io');
+    //ga('send', 'pageview');
+
+  </script>
+</body>
+</html>
