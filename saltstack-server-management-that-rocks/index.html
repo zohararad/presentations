@@ -1,0 +1,423 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <title>Life with SaltStack</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Life with SaltStack">
+  <meta name="author" content="Zohar Arad">
+  <meta name="viewport" content="width=792, user-scalable=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link rel="stylesheet" href="../shower/themes/ribbon/styles/screen.css">
+  <style>
+    .slide h3{
+      font-weight: bold;
+      font-size: 32px;
+    }
+
+    .shout h3 {
+      font-size: 60px;
+      font-weight: bold;
+      line-height: 1.4;
+      margin-top: 80px;
+    }
+
+    .shout h2 small {
+      font-size: 40px;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    figcaption, pre{
+      font-size: 18px;
+      line-height: inherit;
+    }
+
+    small {
+      font-size: 16px;
+    }
+
+    .slide pre code {
+      line-height: inherit;
+    }
+
+    .slide.cover footer{
+      position: absolute;
+      right:0;
+      bottom:0;
+      left:0;
+      background-color: rgba(255,255,255,0.9);
+      display: block;
+      padding: 15px 0;
+      line-height: 1.2;
+    }
+
+    .slide.cover footer small{
+      font-size: 14px;
+    }
+
+    .slide.cover.centered img{
+      height: auto;
+      -webkit-transform:translate3d(-50%, -50%, 0);
+      transform:translate3d(-50%, -50%, 0);
+      left: 50%;
+      top: 50%;
+    }
+
+    .slide p {
+      margin-bottom: 30px;
+    }
+
+    .slide .pull-up{
+      margin-top:-60px;
+    }
+
+    .slide code.half{
+      width: 50%;
+      float: left;
+    }
+    .slide code.half:before{
+      display: none;
+    }
+  </style>
+</head>
+<body class="list" data-scroll="locked">
+<header class="caption">
+  <h1>SaltStack - Configuration Management that Rocks!</h1>
+  <p>Zohar Arad. &copy; 2015</p>
+</header>
+<section class="slide shout">
+  <div>
+    <h2>
+      SaltStack<br/>
+      <small>Configuration Management that Rocks!</small>
+    </h2>
+  </div>
+</section>
+<section class="slide">
+  <div>
+    <h2>About Me</h2>
+    <ul>
+      <li>Full-Stack Web Developer (Ruby, Javascript)</li>
+      <li>Lead-Tech at Quicklizard Ltd.</li>
+      <li>Freelance consultant &amp; trainer</li>
+      <li>Find me - @zohararad (Twitter / Github)</li>
+    </ul>
+  </div>
+</section>
+<section class="slide">
+  <div>
+    <h2>SaltStack Intro</h2>
+    <ul>
+      <li>Configuration Manager (obviously)</li>
+      <li>Remote Execution Engine</li>
+      <li>Written in Python</li>
+      <li>Configs are Jinja-powered YAMLs</li>
+      <li>Hierarchical Master/Slave Architecture</li>
+    </ul>
+  </div>
+</section>
+<section class="slide">
+  <div>
+    <h2>Standing Out From The Crowd</h2>
+    <p>What makes SaltStack stand out from the crowd are:</p>
+    <ul>
+      <li>Remote Execution</li>
+      <li>Power of Simplicity (3 concepts &amp; Jinja)</li>
+      <li>Solid Docs (once you wrap your head around it)</li>
+      <li>Everything is a file!</li>
+      <li>It's only YAML, but it's extensible (imports, overrides)</li>
+    </ul>
+  </div>
+</section>
+<section class="slide">
+  <div>
+    <h2>Salt States</h2>
+    <p>
+      Salt States are the heart of SaltStack's engine, and define the final state in
+      which our server should be configured.
+    </p>
+  </div>
+</section>
+<section class="slide">
+  <div>
+    <h2>Salt States</h2>
+    <ul>
+      <li>Installed Software (optionally with version)</li>
+      <li>Running Services</li>
+      <li>File System (dirs, files, mount points)</li>
+      <li>User-provided configuration (with Jinja support)</li>
+      <li>Dependencies and Conditions</li>
+    </ul>
+  </div>
+</section>
+<section class="slide">
+  <div>
+    <h3 class="pull-up">Salt States - Packages and Services</h3>
+    <pre>
+      <code>
+nginx:
+  pkgrepo.managed:
+    - ppa: nginx/stable
+    - require_in:
+      - pkg: nginx
+  pkg.installed:
+    - version: 1.6.2
+  service.running:
+    - enable: True
+    - require:
+      - pkg: nginx
+      </code>
+    </pre>
+  </div>
+</section>
+<section class="slide">
+  <div>
+    <h3 class="pull-up">Salt States - File Management</h3>
+    <pre>
+      <code>
+/etc/nginx/sites-available/www.mysite.com:
+  file.managed:
+    - source: salt://packages/nginx/sites-available/www.mysite.com
+    <strong>- template: jinja</strong>
+    - require:
+      - pkg: nginx
+
+/etc/nginx/sites-enabled/www.mysite.com:
+  file.symlink:
+    - target: salt://packages/nginx/sites-available/www.mysite.com
+    - require:
+      - file: /etc/nginx/sites-available/www.mysite.com
+      </code>
+    </pre>
+  </div>
+</section>
+<section class="slide">
+  <div>
+    <h2>Pillars of Salt</h2>
+    <p>SaltStack's Pillars are the way we define variables that can be passed on to our Salt State files</p>
+    <p>Pillars help us create reusable, generic states with custom, user-defined variables.</p>
+  </div>
+</section>
+<section class="slide">
+  <div>
+    <h3 class="pull-up">Salt Pillar Data</h3>
+    <pre>
+      <code>
+<strong># Pillar File</strong>
+nginx:
+  <strong>- stable: 1.6.2</strong>
+  - edge: 1.7.3
+
+<strong># State File</strong>
+{% set <strong>nginx</strong> = pillar.get('nginx', {}) -%}
+nginx:
+  pkg.installed:
+    - version: <strong>{{ nginx['stable'] }}</strong>
+      </code>
+    </pre>
+  </div>
+</section>
+<section class="slide">
+  <div>
+    <h2>Grains of Salt</h2>
+    <p>
+      Salt Grains are useful bits of information about the underlying OS we're trying to configure, such as OS type (Ubuntu or RedHat),
+      CPU Arch., network and hostnames and even user-defined information (such as roles).
+    </p>
+    <p>
+      Like Salt Pillars, Grains help us define generic Salt States that target multiple configuration targets and scenarios.
+    </p>
+  </div>
+</section>
+<section class="slide">
+  <div>
+    <h3 class="pull-up">Salt Grains - Package Names</h3>
+    <pre>
+      <code>
+apache:
+  pkg.installed:
+    {% if grains['os'] == 'RedHat'%}
+    - name: httpd
+    {% elif grains['os'] == 'Ubuntu' %}
+    - name: apache2
+    {% endif %}
+      </code>
+    </pre>
+  </div>
+</section>
+<section class="slide">
+  <div>
+    <h3 class="pull-up">Salt Grains - Hostnames</h3>
+    <pre>
+      <code>
+# nginx configuration
+server {
+  listen 80;
+  server_name <strong>{{ grains['id'] }}</strong> <strong>{{ grains['id'] | replace('www','') }}</strong>;
+  root /var/www/mysite.com/public;
+}
+      </code>
+    </pre>
+  </div>
+</section>
+<section class="slide">
+  <div>
+    <h2>Putting it all Together</h2>
+    <p>
+      With out States, Pillars and Grains in place, we can now see how learn about Master, Minions
+      and applying our configuration to target servers.
+    </p>
+  </div>
+</section>
+<section class="slide">
+  <div>
+    <h3 class="pull-up">SaltStack Cluster</h3>
+    <img src="img/SaltStack.svg">
+  </div>
+</section>
+<section class="slide">
+  <div>
+    <h2>Salt Master</h2>
+    <ul>
+      <li>Holds master copy of States and Pillars</li>
+      <li>Authenticates new minions (SSH)</li>
+      <li>Serves States, Pillars &amp; Files (file server)</li>
+      <li>Single point of remote execution on minions</li>
+      <li>States can be read from Git</li>
+      <li>Masters can be hierarchical</li>
+    </ul>
+  </div>
+</section>
+<section class="slide">
+  <div>
+    <h2>Salt Minion</h2>
+    <ul>
+      <li>Runs on each target server</li>
+      <li>Reads config from Master, caches locally</li>
+      <li>Responsible for actual execution</li>
+      <li>Authenticates with Master over SSH</li>
+      <li>Communicates with Master over ZeroMQ</li>
+    </ul>
+  </div>
+</section>
+<section class="slide">
+  <div>
+    <h2>Top Files</h2>
+    <p>Top files (<strong>top.sls</strong>) are the entry point of our States and Pillars configuration</p>
+    <p>Since everything in SaltStack is a file, Top files serve as the entry point from which we can target which minions will receive which parts of States and Pillars configuration tree.</p>
+  </div>
+</section>
+<section class="slide">
+  <div>
+    <h3 class="pull-up">SaltStack File Tree &amp; States top.sls</h3>
+    <pre>
+      <code class="half">
+/srv/salt/states
+  - top.sls
+  /salt
+    - minion.sls
+    - master.sls
+  /nginx
+    - init.sls
+  /repos
+    - ubuntu.sls
+      </code>
+      <code class="half">
+base:
+  '*':
+    - salt.minion
+  'salt-master*':
+    - salt.master
+  '^(lb|web).(qa|prod).loc$':
+    - match: pcre
+    - nginx
+  'os:Ubuntu':
+    - match: grain
+    - repos.ubuntu
+      </code>
+    </pre>
+  </div>
+</section>
+<section class="slide">
+  <div>
+    <h3 class="pull-up">Pillar Data top.sls</h3>
+    <pre>
+      <code class="half">
+/src/salt/pillars
+  - top.sls
+  /salt
+    - minion.sls
+    - master.sls
+  /www.mysite.com
+    - init.sls
+      </code>
+      <code class="half">
+base:
+  '*':
+    - salt.minion
+  'salt-master*':
+    - salt.master
+  '^web.(qa|prod)':
+    - match: pcre
+    - www.mysite.com
+      </code>
+    </pre>
+  </div>
+</section>
+<section class="slide shout">
+  <div>
+    <h2>Recap!</h2>
+  </div>
+</section>
+<section class="slide">
+  <div>
+    <h2>SaltStack Highlights</h2>
+    <ul>
+      <li>Everything is a file. YAML formatted Jinja templates</li>
+      <li>States hold config, Pillars hold variables, Grains hold OS data</li>
+      <li>Master manages config, minions and serves files</li>
+      <li>Minion gets targeted config from Master, executes locally</li>
+      <li>States and Pillars are file trees with <strong>top.sls</strong> as entry point</li>
+      <li>Minions are targeted in <strong>top.sls</strong> using grains, regex. etc.</li>
+    </ul>
+  </div>
+</section>
+<section class="slide">
+  <div>
+    <h2>We only touched the surface</h2>
+    <p>SaltStack is more than just a configuration manager. So far we covered the bare basics to familiarize ourselves with Salt.</p>
+    <p>For more advanced topics, including environment-based configs, scheduling and job managemnet, check out <a href="http://docs.saltstack.com/en/latest/contents.html" target="_blank">docs.saltstack.com</a> </p>
+  </div>
+</section>
+<section class="slide">
+  <div>
+    <h2>My experience with SaltStack at Quicklizard</h2>
+    <ul>
+      <li>Reasons for choosing SaltStack over Chef and Ansible</li>
+      <li>Beyond configuration - Remote execution and automatic recovery</li>
+      <li>Role based deployment with roles in Grains</li>
+      <li>Low points - Docs, debugging</li>
+    </ul>
+  </div>
+</section>
+<section class="slide shout">
+  <div>
+    <h2>Thank You!<br /><small>Quesions?</small></h2>
+  </div>
+</section>
+<div class="progress"><div></div></div>
+<script src="../shower/shower.min.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49621437-1', 'zohararad.github.io');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>
