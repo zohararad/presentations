@@ -121,7 +121,7 @@
 <section class="slide">
   <div>
     <h2>Standing Out From The Crowd</h2>
-    <p>What makes SaltStack stand out from the crowd are:</p>
+    <p>Features that make SaltStack stand out from the crowd include:</p>
     <ul>
       <li>Remote Execution</li>
       <li>Power of Simplicity (3 concepts &amp; Jinja)</li>
@@ -366,6 +366,32 @@ base:
     </pre>
   </div>
 </section>
+<section class="slide">
+  <div>
+    <h2>Remote Execution</h2>
+    <p>
+      Remote execution is basically the entry point to control minion state via state files or run arbitrary commands
+      on a subset of registered minions
+    </p>
+    <p>
+      This is useful because it provides us with a fine-grained control over each minion using a very simple CLI.
+    </p>
+  </div>
+</section>
+<section class="slide">
+  <div>
+    <h2>Remote Execution</h2>
+    <pre>
+      <code>
+# tell minions to go into "high-state"
+$ salt 'www*' state.highstate
+
+# upgrade SSH server on all minions
+$ salt '*' cmd.run 'aptitude install sshd=1.1.0~ubuntu-1.1.2'
+      </code>
+    </pre>
+  </div>
+</section>
 <section class="slide shout">
   <div>
     <h2>Recap!</h2>
@@ -378,6 +404,7 @@ base:
       <li>Everything is a file. YAML formatted Jinja templates</li>
       <li>States hold config, Pillars hold variables, Grains hold OS data</li>
       <li>Master manages config, minions and serves files</li>
+      <li>Master allows remote execution on minions</li>
       <li>Minion gets targeted config from Master, executes locally</li>
       <li>States and Pillars are file trees with <strong>top.sls</strong> as entry point</li>
       <li>Minions are targeted in <strong>top.sls</strong> using grains, regex. etc.</li>
